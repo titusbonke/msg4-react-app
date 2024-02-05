@@ -117,80 +117,45 @@
 
 
 
-    <script> 
+    <!-- <script> 
  $(function () {  $('.select2').select2() 
 $('.select2bs4').select2({  theme: 'bootstrap4' })
 $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
 $('#datemask2').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
- $('#timepicker').datetimepicker({format: 'LT'}) })</script>
+ $('#timepicker').datetimepicker({format: 'LT'}) })</script> -->
 
 
 <script>
         /* When the user clicks on the button,
         toggle between hiding and showing the dropdown content */
-        function myFunction() {
-            document.getElementById("myDropdown").classList.toggle("show");
-        }
 
-        function filterFunction() {
-            var input, filter, ul, li, a, i;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            div = document.getElementById("myDropdown");
-            a = div.getElementsByTagName("a");
-            for (i = 0; i < a.length; i++) {
-                txtValue = a[i].textContent || a[i].innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    a[i].style.display = "";
-                } else {
-                    a[i].style.display = "none";
-                }
-            }
-        }
 
-        function searchFunction() {
-            var input;
-            input = document.getElementById("myInput");
-            if (input.value == "msg4") {
-                location.href = "https://console.cloud.robeeta.com/msg4?Token=@UjL1SzVmJMEdLEbYECcISsZU8VL59g1VHSWTlNqK09hRa8hhRcMhWvaNXFs5mms6wZnG8B$e9wpqZy6b$ivThuRpukN2JROO40kutabA$fM=@";
-            }
-            else if (input.value == "vm") {
-                location.href = "https://console.cloud.robeeta.com/vm?Token=@6LQKQjldjjggILkMC4itU2hzk2otH6FE4vhwhI1$ghqqzwgRuU_MuuYeugC$N8APm979G1BnfbruiQYsGI8cIka4U3hhhHDeO0vBl3OgUtg=@";
-            }
-            else if (input.value == "veri5") {
-                location.href = "https://console.cloud.robeeta.com/veri5?Token=@VchTP_XX0E82l2PhA6_HUtoBhyiceVzBU3P$7B4hda9jcfSvKXmyEdJIT7DinEqqsNV$PegjaeZdzw7xAc0THFK2WX3GaCaFDKjEEWZV28E=@";
-            }
-            else {
-                document.getElementById("myDropdown2").classList.toggle("show");
-            }
 
-            }
+    // // Close the dropdown if the user clicks outside of it
+    // window.onclick = function (event) {
+    //     if (!event.target.matches('.search-control')) {
 
-    // Close the dropdown if the user clicks outside of it
-    window.onclick = function (event) {
-        if (!event.target.matches('.search-control')) {
+    //         var dropdowns = document.getElementsByClassName("searchdropdown-content");
+    //         var i;
+    //         for (i = 0; i < dropdowns.length; i++) {
+    //             var openDropdown = dropdowns[i];
+    //             if (openDropdown.classList.contains('show')) {
+    //                 openDropdown.classList.remove('show');
+    //             }
+    //         }
+    //     }
+    //      if (!event.target.matches('.btn-default')) {
 
-            var dropdowns = document.getElementsByClassName("searchdropdown-content");
-            var i;
-            for (i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains('show')) {
-                    openDropdown.classList.remove('show');
-                }
-            }
-        }
-         if (!event.target.matches('.btn-default')) {
-
-            var dropdown2 = document.getElementsByClassName("searchdropdown-content2");
-            var i;
-             for (i = 0; i < dropdown2.length; i++) {
-                 var openDropdown2 = dropdown2[i];
-                 if (openDropdown2.classList.contains('show')) {
-                     openDropdown2.classList.remove('show');
-                }
-            }
-        }
-    }
+    //         var dropdown2 = document.getElementsByClassName("searchdropdown-content2");
+    //         var i;
+    //          for (i = 0; i < dropdown2.length; i++) {
+    //              var openDropdown2 = dropdown2[i];
+    //              if (openDropdown2.classList.contains('show')) {
+    //                  openDropdown2.classList.remove('show');
+    //             }
+    //         }
+    //     }
+    // }
 
 </script>
 
