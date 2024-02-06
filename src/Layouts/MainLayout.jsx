@@ -4,7 +4,6 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import Header from '../Includes/Header';
 import MenuBar from '../Includes/MenuBar';
 import Footer from '../Includes/Footer';
-import Dashboard from '../Pages/Dashboard';
 
 
 
@@ -52,9 +51,13 @@ function MainLayout({ children }) {
                     <script src='https://console.cloud.robeeta.com/msg4/WebTheme20/chart/chart.min.js'></script>
                 </Helmet>
 
-                <Header/>
+                <Header />
                 <MenuBar />
-                <Dashboard />
+                <div className="content-wrapper">
+                    <div className="container-fluid">
+                        {children}
+                    </div>
+                </div>
                 <Footer />
 
             </div>

@@ -1,6 +1,6 @@
 function Dashboard() {
     return (
-        <div className="content-wrapper">
+        <>
             <style
                 dangerouslySetInnerHTML={{
                     __html:
@@ -125,7 +125,7 @@ function Dashboard() {
                     </div>
                 </div>
             </section>
-        </div>
+        </>
     );
 }
 
