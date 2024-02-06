@@ -52,7 +52,7 @@ function MenuItem({ children, name, iconClass = "nav-icon fas fa-star", url, isT
                     <li className="nav-item">
                         <Link
                             to={url}
-                            onClick={() => { makeLinkActive(); OpenPopup(); }}
+                            onClick={(e) => { makeLinkActive(e); OpenPopup(e); }}
                             className={"nav-link " + menuActive}
                         >
                             <i className={iconClass} />
