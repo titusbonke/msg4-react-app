@@ -4,6 +4,7 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import Header from '../Includes/Header';
 import MenuBar from '../Includes/MenuBar';
 import Footer from '../Includes/Footer';
+import LoadingContext from '../Components/LoadingContextProvider';
 
 
 
@@ -50,14 +51,15 @@ function MainLayout({ children }) {
                     <script src='https://console.cloud.robeeta.com/msg4/WebTheme20/chart/chart.js'></script>
                     <script src='https://console.cloud.robeeta.com/msg4/WebTheme20/chart/chart.min.js'></script>
                 </Helmet>
-
                 <Header />
                 <MenuBar />
+                <LoadingContext>
                 <div className="content-wrapper">
                     <div className="container-fluid">
                         {children}
                     </div>
                 </div>
+                </LoadingContext>
                 <Footer />
 
             </div>
