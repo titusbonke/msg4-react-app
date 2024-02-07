@@ -1,26 +1,28 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import $ from 'jquery';
 
-
-
 function MenuItem({ children, name, iconClass = "nav-icon fas fa-star", url, isTab, isPopUp, popUpHeight = 700, popUpWidth = 550 }) {
-    var [menuActive, setMenuActive] = useState("");
 
     const makeLinkActive = (e) => {
-        e.preventDefault();
-        var parentLinks = $(e.target).parents("li.nav-item");
-        
-        // Do something with the selected parent <a> tags
-        parentLinks.each(function(c) {
-            // Do something with each parent <a> tag
-            var child = $(c).children("a.nav-link")[0];
-            console.log(child);
+        //for removing all the active and menu-open class from anchor tags
+        $(".main-sidebar a.nav-link.active").each((index, item) => {
+            $(item).removeClass("active");
         });
-    
-        // setMenuActive("active");
+        $(".nav-item.has-treeview.menu-open").each((index, item) => {
+            $(item).removeClass("menu-open");
+        });
+        $(".main-sidebar.sidebar-focused").each((index, item) => {
+            $(item).removeClass("sidebar-focused");
+        });
+
+        //for marking all the anchor tags with active class
+        var parentLinks = $(e.target).parents("li.nav-item");
+        parentLinks.each(function (index, item) {
+            var child = $(item).children("a.nav-link")[0];
+            $(child).addClass("active");
+        });
     }
-    const OpenPopup = (e) => {
+    const OpenPopupOrTab = (e) => {
         if (isPopUp) {
             e.preventDefault();
             window.open(url, '_blank', `height=${popUpHeight},width=${popUpWidth}`);
@@ -37,7 +39,7 @@ function MenuItem({ children, name, iconClass = "nav-icon fas fa-star", url, isT
             {
                 children ?
                     <li className="nav-item has-treeview">
-                        <a href="/" className={"nav-link " + menuActive}>
+                        <a href="/" className="nav-link ">
                             <i className={iconClass} />
                             <p>
                                 {name}
@@ -52,8 +54,8 @@ function MenuItem({ children, name, iconClass = "nav-icon fas fa-star", url, isT
                     <li className="nav-item">
                         <Link
                             to={url}
-                            onClick={(e) => { makeLinkActive(e); OpenPopup(e); }}
-                            className={"nav-link " + menuActive}
+                            onClick={(e) => { makeLinkActive(e); OpenPopupOrTab(e); }}
+                            className="nav-link "
                         >
                             <i className={iconClass} />
                             <p>{name}</p>
