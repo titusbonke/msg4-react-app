@@ -1,32 +1,22 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { LoadingContext } from "../Components/LoadingContextProvider";
+import { msg4apicall } from "../CommonFunctions";
 
 function TestPage() {
-    const { setLoading,loading } = useContext(LoadingContext);
+    const { setLoading } = useContext(LoadingContext);
     // useEffect(() => {
-        var fetchData = async () => {
-            try {
-                const response = await fetch('https://cors-anywhere.herokuapp.com/https://apx.msg4.cloud.robeeta.com/WebQuery', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                        'Origin': 'http://localhost:3000', // Replace with your actual domain
-                        'X-Requested-With': 'XMLHttpRequest'                
-                    },
-                    body: JSON.stringify({
-                        ReadUserDashboardRqst: {
-                            LoginToken: 'f659c649a1ca4988bd50a6df4700a7bbf012d3908161430b98a6c36ae0beed44',
-                            UserGuid: 'c5cf3fe0-1bcb-4724-995b-fbe71d1c904e'
-                        }
-                    })
-                });
-                const data = await response.json();
-                return Object.values(data).filter(value => value !== null)[0];
-            } catch (error) {
-                console.log(error);
-            }
-        };
+        
+        // var fetchGetData = async () => {
+        //     try {
+        //         setLoading(true);
+        //         const response = await fetch('http://localhost:4000/proxy/get?url=https://reqres.in/api/users?page=2');
+        //         const data = await response.json();
+        //         setLoading(false);
+        //         return data;
+        //     } catch (error) {
+        //         console.log(error);
+        //     }
+        // };
 
     // }, []);
 
@@ -38,15 +28,21 @@ function TestPage() {
         }, 1000);
     }
 
-    function multipleFetch(){
-        fetchData().then(data=>console.log(data.Response))
+    function  FetchData(){
+        setLoading(true);
+        msg4apicall({
+            ReadUserDashboardRqst: {
+                LoginToken: '185a1e6516dd4f8a80a4ebcc7748212ba5ded331ed90406c94d520ec51e5ad76',
+                UserGuid: 'c5cf3fe0-1bcb-4724-995b-fbe71d1c904e'
+            }
+        }).then(data=>{console.log(data); setLoading(false);})
     }
 
     return (
         <div className="text-center">
         <h1 >Testpage</h1>
         <button onClick={setLoadingDelay} className="btn btn-primary m-2" >loading toogle button</button><br />
-        <button onClick={multipleFetch} className="btn btn-primary m-2" >test api button</button>
+        <button onClick={FetchData} className="btn btn-primary m-2" >test api button</button>
         </div>
     );
 }

@@ -30,7 +30,7 @@ function MainLayout({ children }) {
                     <link rel='stylesheet' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css' />
                     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700' rel='stylesheet' />
                     <link rel='stylesheet' href='https://console.cloud.robeeta.com/msg4/WebTheme20/plugins/datatables-responsive/css/responsive.bootstrap4.min.css' />
-                    <link rel='stylesheet' href='https://console.cloud.robeeta.com/msg4/WebTheme20/plugins/pre-loader/preloader-1.css' />
+                    {/* <link rel='stylesheet' href='https://console.cloud.robeeta.com/msg4/WebTheme20/plugins/pre-loader/preloader-1.css' /> */}
                 </Helmet>
                 <Helmet>
                     <script src='https://console.cloud.robeeta.com/msg4/WebTheme20/plugins/jquery/jquery.min.js' defer  ></script>
