@@ -4,12 +4,6 @@ import PageHeader from "../Components/PageHeader";
 function Dashboard() {
     return (
         <>
-            <style
-                dangerouslySetInnerHTML={{
-                    __html:
-                        "\n    .col-lg-3 .small-box h3, .col-md-3 .small-box h3 {\n        font-size: 1.6rem;\n        white-space: pre-wrap;\n    }\n"
-                }}
-            />
             <PageHeader pageName="Dashboard" parentPagesArray={[{ name: "Dashboard", url: "/dashboard" }, { name: "Test", url: "test" }]} />
             <section >
                 <Container>

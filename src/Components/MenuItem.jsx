@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import $ from 'jquery';
 
-function MenuItem({ children, name, iconClass = "nav-icon fas fa-star", url, isTab, isPopUp, popUpHeight = 700, popUpWidth = 550 }) {
+function MenuItem({ children, name, iconClass = "nav-icon fas fa-star", url, isTab, isPopUp, popUpHeight = 500, popUpWidth = 450 }) {
 
     const makeLinkActive = (e) => {
         //for removing all the active and menu-open class from anchor tags

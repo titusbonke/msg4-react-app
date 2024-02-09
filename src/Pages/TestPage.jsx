@@ -35,7 +35,7 @@ function TestPage() {
                 LoginToken: '185a1e6516dd4f8a80a4ebcc7748212ba5ded331ed90406c94d520ec51e5ad76',
                 UserGuid: 'c5cf3fe0-1bcb-4724-995b-fbe71d1c904e'
             }
-        }).then(data=>{console.log(data); setLoading(false);})
+        }).then(data=>{console.log(data.Response); setLoading(false);})
     }
 
     return (

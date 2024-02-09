@@ -1,0 +1,32 @@
+#form-alert {
+    height: 38px;
+    margin: 0 !important;
+    font-size: 1rem;
+    padding-bottom: 1.75rem;
+    padding-left: 0.75rem;
+    padding-top: 0.55rem;
+    padding-right: 3rem;
+    position: relative;
+    float: right;
+}
+
+#form-alert-icon {
+    margin-right: 0.75rem;
+}
+
+#form-alert-close {
+    padding: 0.5rem 0.75rem;
+    padding-top: 0.4rem !important;
+}
+
+.form-btns {
+    margin-right: 15px;
+}
+
+.d-flex {
+    padding: 0 !important;
+}
+
+.alert {
+    margin: 0;
+}
