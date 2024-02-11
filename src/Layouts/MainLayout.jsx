@@ -4,7 +4,8 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import Header from '../Includes/Header';
 import MenuBar from '../Includes/MenuBar';
 import Footer from '../Includes/Footer';
-import LoadingContext from '../Components/LoadingContextProvider';
+import InputContextProvider from '../Components/InputContextProvider';
+import LoadingProvider from '../Components/LoadingContextProvider';
 
 
 
@@ -53,13 +54,15 @@ function MainLayout({ children }) {
                 </Helmet>
                 <Header />
                 <MenuBar />
-                <LoadingContext>
+                <InputContextProvider>
+                <LoadingProvider>
                 <div className="content-wrapper">
                     <div className="container-fluid">
                         {children}
                     </div>
                 </div>
-                </LoadingContext>
+                </LoadingProvider>
+                </InputContextProvider>
                 <Footer />
 
             </div>

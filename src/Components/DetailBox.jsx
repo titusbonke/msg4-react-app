@@ -1,5 +1,5 @@
 function DetailBox({ Name, Detail, ColorClass, IconClass }) {
-    console.log(Name, Detail, ColorClass, IconClass);
+    // console.log(Name, Detail, ColorClass, IconClass);
     return (
         <>
             <style

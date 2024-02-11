@@ -1,5 +1,7 @@
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import "../Layouts/EntryLayout.css"
+import LoadingProvider from "../Components/LoadingContextProvider";
+import InputContextProvider from "../Components/InputContextProvider";
 
 function ErrorLayout({ children }) {
     return (
@@ -38,28 +40,34 @@ function ErrorLayout({ children }) {
                 <script src='https://console.cloud.robeeta.com/msg4/WebTheme20/chart/chart.js'></script>
                 <script src='https://console.cloud.robeeta.com/msg4/WebTheme20/chart/chart.min.js'></script>
             </Helmet>
-            <div className="wrapper">
-                <div className="content-wrapper" style={{ marginLeft: 0, minHeight: 399 }}>
-                    <form
-                        encType="multipart/form-data"
-                    >
-                        <section className="content">
-                            <div className="container-fluid">
-                                <div className="row">
-                                    <div
-                                        className="col-12 col-sm-12"
-                                        style={{ padding: "7.5px", paddingTop: "5.5px" }}
-                                    >
-                                        {children}
+            <LoadingProvider>
+                <InputContextProvider>
 
+                    <div className="wrapper">
+                        <div className="content-wrapper" style={{ marginLeft: 0, minHeight: 399 }}>
+                            <form
+                                encType="multipart/form-data"
+                            >
+                                <section className="content">
+                                    <div className="container-fluid">
+                                        <div className="row">
+                                            <div
+                                                className="col-12 col-sm-12"
+                                                style={{ padding: "7.5px", paddingTop: "5.5px" }}
+                                            >
+                                                {children}
+
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </section>
-                    </form>
-                </div>
-            </div>
+                                </section>
+                            </form>
+                        </div>
+                    </div>
+                </InputContextProvider>
+            </LoadingProvider>
         </HelmetProvider >
+
 
     );
 }
