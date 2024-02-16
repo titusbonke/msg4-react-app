@@ -1,13 +1,11 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { TextBox, CheckBox, Button } from "../Components/Inputs";
 import EntryCard, { EntryCardFooter, EntryCardTab, EntryCardWithTabs } from "../Includes/EntryCard";
 import  { InputContext } from "../Components/InputContextProvider";
+
 export function AddGroup() {
-    const {InputValues,SetInputValueChange,resetInputValues } = useContext(InputContext);
-    // useEffect(a=>resetInputValues(),[]);
-    useEffect(a=>console.log("ran"),[]);
-    console.log("ran1")
-    return (
+    const {InputValues } = useContext(InputContext);
+        return (
         <EntryCard Name="Add Group" >
             <TextBox Id="GroupName" Label="Group Name" Placeholder="Group Name" Required Value="test" />
             <TextBox Id="GroupCode" Label="Group Code" Placeholder="Group Code" Required  Value="Test1" />

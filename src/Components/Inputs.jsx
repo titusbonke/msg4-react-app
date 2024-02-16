@@ -2,15 +2,10 @@ import { useContext, useEffect } from "react";
 import { InputContext } from "../Components/InputContextProvider";
 
 export function TextBox({ Id, Label,Value="", Placeholder, Required, Width = 250 }) {
-    const { InputValues, SetInputValueChange, resetInputValues } = useContext(InputContext);
-    // useEffect(e=>SetInputValueChange(Id, Value),[])
-    const handleChange = (event) => {
-        SetInputValueChange(Id, event.target.value);
-    };
+    const { InputValues, SetInputValueChange } = useContext(InputContext);
+    // eslint-disable-next-line
+    useEffect(e=>SetInputValueChange(Id, Value),[])
     
-    // Handle the case when InputValues[Id] is undefined
-    // const value = InputValues[Id] || '';
-    // InputValues[Id]=Value;
     return (
         <div className="form-group">
             <label htmlFor={Id}>
@@ -24,7 +19,7 @@ export function TextBox({ Id, Label,Value="", Placeholder, Required, Width = 250
                 className="form-control"
                 placeholder={Placeholder}
                 value={InputValues[Id] || Value} // Use the value variable here
-                onChange={handleChange}
+                onChange={e=>SetInputValueChange(Id, e.target.value)}
             />
         </div>
     );

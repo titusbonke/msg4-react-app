@@ -1,27 +1,21 @@
-import React, { createContext, useEffect, useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { createContext,useLayoutEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 export const InputContext = createContext();
 
 function InputContextProvider({ children }) {
     const [InputValues, SetInputValues] = useState({});
-    const navigate = useNavigate();
+    const location = useLocation();
 
-    const initialRoute = useMemo(() => navigate.pathname, [navigate]);
-
-    useEffect(() => {
-      const unsubscribe = navigate.subscribe((location) => {
-        if (location.pathname !== initialRoute) {
-          resetInputValues();
-        }
-      });
-  
-      return () => unsubscribe();
-    }, [navigate, initialRoute]);
+    useLayoutEffect(() => {
+      // Run your function here
+      resetInputValues();
+    //   console.log("Values Reseted.");
+    }, [location]); // Re-run effect whenever location changes
   
 
     const SetInputValueChange = (id, value) => {
-        console.log(id,value)
+        // console.log(id,value)
         SetInputValues(prevState => ({
             ...prevState,
             [id]: value
