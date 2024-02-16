@@ -2,6 +2,7 @@ import { Container } from "../Components/BootstrapGridSystem";
 import DetailBox from "../Components/DetailBox";
 import PageHeader from "../Components/PageHeader";
 function Dashboard() {
+    
     return (
         <>
             <PageHeader pageName="Dashboard" parentPagesArray={[{ name: "Dashboard", url: "/dashboard" }, { name: "Test", url: "test" }]} />

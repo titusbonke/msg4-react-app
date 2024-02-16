@@ -1,5 +1,6 @@
 export async function  msg4apicall(RqstObject){
     try {
+        console.log(RqstObject);
         const response = await fetch('http://localhost:4000/proxy/post', {
             method: 'POST',
             headers: {
@@ -12,6 +13,7 @@ export async function  msg4apicall(RqstObject){
             })
         });
         const data = await response.json();
+        if (process.env.NODE_ENV === 'development') console.log(data)
         return Object.values(data).filter(value => value !== null)[0];
     } catch (error) {
         console.log(error);

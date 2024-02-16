@@ -25,19 +25,24 @@ export function TextBox({ Id, Label,Value="", Placeholder, Required, Width = 250
     );
 }
 export function CheckBox({ Id, Label, Value, Placeholder, Required, Width = 250 }) {
+    const { InputValues, SetInputValueChange } = useContext(InputContext);
+    // eslint-disable-next-line
+    useEffect(e=>SetInputValueChange(Id, Value),[])
+
     return (
         <div className="form-group">
             <div className="icheck-primary d-inline">
                 <input
                     type="checkbox"
                     id={Id}
-                    defaultValue={Value}
+                    defaultValue={InputValues[Id] || Value}
                     name={Id}
-                    defaultChecked={Value}
+                    defaultChecked={InputValues[Id] || Value}
+                    onChange={e=>SetInputValueChange(Id, e.target.checked)}
                 />
                 <input
                     type="hidden"
-                    defaultValue={Value}
+                    defaultValue={InputValues[Id] || Value}
                     id={Id}
                     name={Id}
                 />

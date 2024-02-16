@@ -15,7 +15,7 @@ function InputContextProvider({ children }) {
   
 
     const SetInputValueChange = (id, value) => {
-        // console.log(id,value)
+        console.log(id,value)
         SetInputValues(prevState => ({
             ...prevState,
             [id]: value
