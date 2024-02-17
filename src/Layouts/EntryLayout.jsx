@@ -44,7 +44,7 @@ function ErrorLayout({ children }) {
                 <InputContextProvider>
 
                     <div className="wrapper">
-                        <div className="content-wrapper" style={{ marginLeft: 0, minHeight: 399 }}>
+                        <div className="" style={{ marginLeft: 0, minHeight: 399 }}>
                             <form
                                 encType="multipart/form-data"
                             >

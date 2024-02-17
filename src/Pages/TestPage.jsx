@@ -1,41 +1,24 @@
-import { useContext } from "react";
-import { LoadingContext } from "../Components/LoadingContextProvider";
 import { msg4apicall } from "../CommonFunctions";
+import useLoading from "../Components/useLoading";
 
 function TestPage() {
-    const { setLoading } = useContext(LoadingContext);
-    // useEffect(() => {
-        
-        // var fetchGetData = async () => {
-        //     try {
-        //         setLoading(true);
-        //         const response = await fetch('http://localhost:4000/proxy/get?url=https://reqres.in/api/users?page=2');
-        //         const data = await response.json();
-        //         setLoading(false);
-        //         return data;
-        //     } catch (error) {
-        //         console.log(error);
-        //     }
-        // };
-
-    // }, []);
+    const [setLoading,SubLoadcount,AddLoadcount] = useLoading();  
 
 
     function setLoadingDelay(){
-        setLoading(true);
+        AddLoadcount()
         setTimeout(() => {
-            setLoading(false);
+            SubLoadcount()
         }, 1000);
     }
 
     function  FetchData(){
-        setLoading(true);
         msg4apicall({
             ReadUserDashboardRqst: {
                 LoginToken: '185a1e6516dd4f8a80a4ebcc7748212ba5ded331ed90406c94d520ec51e5ad76',
                 UserGuid: 'c5cf3fe0-1bcb-4724-995b-fbe71d1c904e'
             }
-        }).then(data=>{console.log(data.Response); setLoading(false);})
+        },setLoading).then(data=>{console.log(data.Response);})
     }
 
     return (

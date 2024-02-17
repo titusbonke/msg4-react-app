@@ -28,6 +28,17 @@
 
 <body class="hold-transition sidebar-mini sidebar-collapse layout-fixed">
   <noscript>You need to enable JavaScript to run this app.</noscript>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src='https://console.cloud.robeeta.com/msg4/WebTheme20/plugins/bootstrap/js/bootstrap.bundle.min.js' defer></script>
+  <style>
+    .alert-bottom-left {
+      position: fixed;
+      bottom: 0; /* Adjust as needed */
+      right: 0; /* Adjust as needed */
+      z-index: 10000; /* Ensure it appears above other content */
+    }
+  </style>
+
 
   <div id="root"></div>
 
@@ -41,6 +52,19 @@ $('#datemask2').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
  $('#timepicker').datetimepicker({format: 'LT'}) })</script> -->
 
 
+ <!-- <script>
+  $(document).ready(function(){
+    // Show the alert
+    $(".alert").alert();
+
+    // Hide the alert after 3 seconds
+    window.setTimeout(function() {
+      $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove();
+      });
+    }, 3000);
+  });
+</script> -->
 
 
 
