@@ -32,7 +32,6 @@ export function AddGroup() {
                 <Button Id="Update" ClassName={"btn-primary"} Label={"Update"} OnClick={SubmitAddGroup} />
             </EntryCardFooter>
             <AlertBox message="This is a sample alert!" type="info" />
-            <AlertBox message="This is a sample alert 1!" type="info" />
         </EntryCard >
     );
 }

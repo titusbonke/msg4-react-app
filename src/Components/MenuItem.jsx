@@ -18,6 +18,8 @@ function MenuItem({ children, name, iconClass = "nav-icon fas fa-star", url, isT
         //for marking all the anchor tags with active class
         var parentLinks = $(e.target).parents("li.nav-item");
         parentLinks.each(function (index, item) {
+            $(item).addClass("menu-open");
+
             var child = $(item).children("a.nav-link")[0];
             $(child).addClass("active");
         });

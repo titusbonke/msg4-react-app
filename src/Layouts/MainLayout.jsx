@@ -6,6 +6,7 @@ import MenuBar from '../Includes/MenuBar';
 import Footer from '../Includes/Footer';
 import InputContextProvider from '../Components/InputContextProvider';
 import LoadingProvider from '../Components/LoadingContextProvider';
+import { AlertBoxContainer } from '../Components/AlertBox';
 
 
 
@@ -64,7 +65,7 @@ function MainLayout({ children }) {
                 </LoadingProvider>
                 </InputContextProvider>
                 <Footer />
-                <div id='alert-container'></div>
+                <AlertBoxContainer />
             </div>
         </HelmetProvider>
 

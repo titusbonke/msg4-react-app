@@ -11,12 +11,12 @@ function TestPage() {
     function setLoadingDelay(){
         AddLoadcount()
         ShowAlertBox("This is a test alert box 1.")
-        // setTimeout(() => {
-        //     ShowAlertBox("This is a test alert box 2.")
-        // }, 2000);
-        // setTimeout(() => {
-        //     ShowAlertBox("This is a test alert box 3.")
-        // }, 3000);
+        setTimeout(() => {
+            ShowAlertBox("This is a test alert box 2.")
+        }, 2000);
+        setTimeout(() => {
+            ShowAlertBox("This is a test alert box 3.")
+        }, 3000);
         setTimeout(() => {
             SubLoadcount()
         }, 1000);

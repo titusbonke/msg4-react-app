@@ -1,30 +1,49 @@
 import React, { useEffect } from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Import Bootstrap JavaScript
-const AlertBox = ({ message }) => {
+const AlertBox = ({ message, typeClass = "success", closeable = true, fadeAwayTime = 3000,relatively=false }) => {
   useEffect(() => {
-    // Show the alert
     window.jQuery(".alert").alert();
 
     const timeout = setTimeout(() => {
-      window.jQuery(".alert").fadeTo(500, 0).slideUp(500, function () {
-        window.jQuery(this).remove();
-      });
-    }, 3000);
-
-    // Clear the timeout on component unmount to prevent memory leaks
+      if (fadeAwayTime > 0) {
+        window.jQuery(".alert").fadeTo(500, 0).slideUp(500, function () {
+          window.jQuery(this).remove();
+        });
+      }
+    }, fadeAwayTime);
     return () => clearTimeout(timeout);
-  }, []); // Run this effect only once on component mount
+    // eslint-disable-next-line
+  }, []); 
+
+  const alertStyle = {
+    position: "fixed",
+    bottom: 0, // Adjust as needed
+    right: 0, // Adjust as needed
+    zIndex: 10000 // Ensure it appears above other content
+  };
 
   return (
-    <div className="alert alert-success alert-dismissible fade show alert-bottom-left m-2" role="alert">
+    <div style={relatively?{}:alertStyle} className={`alert alert-${typeClass} alert-dismissible fade show alert-bottom-left m-2`} role="alert">
       {message}
-      <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+      {closeable ? <button type="button" className="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
-      </button>
+      </button> : ""}
     </div>
   );
 };
 export default AlertBox;
+
+export function AlertBoxContainer() {
+  var alertContainer= {
+    position: "fixed",
+    bottom: 0, /* Adjust as needed */
+    right: 0, /* Adjust as needed */
+    zIndex: 10000 /* Ensure it appears above other content */
+  }
+  return (  
+    <div style={alertContainer} id='alert-container'></div>
+  );
+}
 
 
 export function ShowAlertBox(message, typeClass = "success", closeable = true, fadeAwayTime = 3000) {
@@ -43,12 +62,12 @@ export function ShowAlertBox(message, typeClass = "success", closeable = true, f
   document.getElementById("alert-container").appendChild(alertElement);
   // Remove the alert after 3 seconds
   const timeout = setTimeout(() => {
-      if (fadeAwayTime > 0) {
+    if (fadeAwayTime > 0) {
       window.jQuery(alertElement).fadeTo(500, 0).slideUp(500, function () {
         this.remove();
       });
     }
-    }, fadeAwayTime);
+  }, fadeAwayTime);
   // Clear the timeout on alert close to prevent premature removal
   alertElement.querySelector('.close')?.addEventListener('click', () => {
     clearTimeout(timeout);
