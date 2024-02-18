@@ -4,10 +4,10 @@ import EntryCard, { EntryCardFooter, EntryCardTab, EntryCardWithTabs } from "../
 import { InputContext } from "../Components/InputContextProvider";
 import { msg4apicall } from "../CommonFunctions";
 import useLoading from "../Components/useLoading";
-import AlertBox from "../Components/AlertBox";
+import { ShowAlertBox } from "../Components/AlertBox";
 
 export function AddGroup() {
-    const { InputValues } = useContext(InputContext);
+    const { InputValues,emptyInputFields,SetInputValueChange } = useContext(InputContext);
     var [setLoadingCount] = useLoading()
     function SubmitAddGroup() {
         msg4apicall({
@@ -18,7 +18,13 @@ export function AddGroup() {
                 IsActive: InputValues.IsActive ? 1 : 0,
                 UpdatedBy: "Titus"
             }
-        }, setLoadingCount).then(data => console.log(data.Response))
+        }, setLoadingCount).then(data => {
+            // emptyInputFields()
+            // SetInputValueChange("GroupName","abc")
+            if(data.Response!=="OK") return ShowAlertBox(data.Response,"danger");
+            ShowAlertBox(`Group ${InputValues.GroupName} has been created.`);
+            
+        })
     }
 
 
@@ -31,7 +37,7 @@ export function AddGroup() {
                 <Button Id="Close" ClassName={"btn-danger"} Label={"Close"} OnClick={() => window.close()} Value={"close"} />
                 <Button Id="Update" ClassName={"btn-primary"} Label={"Update"} OnClick={SubmitAddGroup} />
             </EntryCardFooter>
-            <AlertBox message="This is a sample alert!" type="info" />
+            {/* <AlertBox message="This is a sample alert!" type="info" /> */}
         </EntryCard >
     );
 }

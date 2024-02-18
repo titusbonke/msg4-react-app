@@ -2,8 +2,9 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import "../Layouts/EntryLayout.css"
 import LoadingProvider from "../Components/LoadingContextProvider";
 import InputContextProvider from "../Components/InputContextProvider";
+import { AlertBoxContainer } from "../Components/AlertBox";
 
-function ErrorLayout({ children }) {
+function EntryLayout({ children }) {
     return (
         <HelmetProvider>
             <Helmet>
@@ -64,6 +65,7 @@ function ErrorLayout({ children }) {
                             </form>
                         </div>
                     </div>
+                    <AlertBoxContainer />
                 </InputContextProvider>
             </LoadingProvider>
         </HelmetProvider >
@@ -72,4 +74,4 @@ function ErrorLayout({ children }) {
     );
 }
 
-export default ErrorLayout;
+export default EntryLayout;

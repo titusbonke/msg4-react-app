@@ -1,10 +1,10 @@
 import { useContext, useEffect } from "react";
 import { InputContext } from "../Components/InputContextProvider";
 
-export function TextBox({ Id, Label,Value="", Placeholder, Required, Width = 250 }) {
+export function TextBox({ Id, Label, Value = "", Placeholder, Required, Width = 250 }) {
     const { InputValues, SetInputValueChange } = useContext(InputContext);
     // eslint-disable-next-line
-    useEffect(e=>SetInputValueChange(Id, Value),[])
+    useEffect(() => SetInputValueChange(Id, Value), []);
     
     return (
         <div className="form-group">
@@ -18,8 +18,8 @@ export function TextBox({ Id, Label,Value="", Placeholder, Required, Width = 250
                 style={{ width: Width }}
                 className="form-control"
                 placeholder={Placeholder}
-                value={InputValues[Id] || Value} // Use the value variable here
-                onChange={e=>SetInputValueChange(Id, e.target.value)}
+                value={InputValues[Id] !== undefined ? InputValues[Id] : Value} // Use Value as the default value
+                onChange={e => SetInputValueChange(Id, e.target.value)}
             />
         </div>
     );
@@ -35,14 +35,14 @@ export function CheckBox({ Id, Label, Value, Placeholder, Required, Width = 250 
                 <input
                     type="checkbox"
                     id={Id}
-                    defaultValue={InputValues[Id] || Value}
+                    defaultValue={InputValues[Id] !== undefined ? InputValues[Id] : Value}
                     name={Id}
-                    defaultChecked={InputValues[Id] || Value}
                     onChange={e=>SetInputValueChange(Id, e.target.checked)}
+                    checked={InputValues[Id] !== undefined ? InputValues[Id] : Value}
                 />
                 <input
                     type="hidden"
-                    defaultValue={InputValues[Id] || Value}
+                    defaultValue={InputValues[Id] !== undefined ? InputValues[Id] : Value}
                     id={Id}
                     name={Id}
                 />
