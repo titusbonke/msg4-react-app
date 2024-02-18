@@ -57,7 +57,7 @@ function MainLayout({ children }) {
                 <MenuBar />
                 <InputContextProvider>
                 <LoadingProvider>
-                <div className="content-wrapper">
+                <div className="content-wrapper" >
                     <div className="container-fluid">
                         {children}
                     </div>
