@@ -1,5 +1,8 @@
 import { msg4apicall } from "../CommonFunctions";
 import useLoading from "../Components/useLoading";
+import {ShowAlertBox} from "../Components/AlertBox"
+import React from 'react';
+
 
 function TestPage() {
     const [setLoading,SubLoadcount,AddLoadcount] = useLoading();  
@@ -7,6 +10,13 @@ function TestPage() {
 
     function setLoadingDelay(){
         AddLoadcount()
+        ShowAlertBox("This is a test alert box 1.")
+        // setTimeout(() => {
+        //     ShowAlertBox("This is a test alert box 2.")
+        // }, 2000);
+        // setTimeout(() => {
+        //     ShowAlertBox("This is a test alert box 3.")
+        // }, 3000);
         setTimeout(() => {
             SubLoadcount()
         }, 1000);

@@ -64,7 +64,7 @@ function MainLayout({ children }) {
                 </LoadingProvider>
                 </InputContextProvider>
                 <Footer />
-
+                <div id='alert-container'></div>
             </div>
         </HelmetProvider>
 
