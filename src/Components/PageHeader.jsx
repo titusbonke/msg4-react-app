@@ -14,7 +14,7 @@ function PageHeader({ pageName, parentPagesArray }) {
                                 parentPagesArray ? <>{
                                     parentPagesArray.map((a, b) =>
                                         <li key={b} className="breadcrumb-item ">
-                                            <Link to={a.url} >{a.name} </Link>
+                                            {a.url?<Link to={a.url} >{a.name} </Link>:a.name}
                                         </li>
                                     )}
                                     <li className="breadcrumb-item active">{pageName}</li>

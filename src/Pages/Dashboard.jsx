@@ -5,9 +5,12 @@ import PageHeader from "../Components/PageHeader";
 import { msg4apicall } from "../CommonFunctions";
 import { ShowAlertBox } from "../Components/AlertBox";
 import useLoading from "../Components/useLoading";
+import moment from "moment/moment";
+
 function Dashboard() {
     var [setLoadingCount] = useLoading()
     var [data,setData]=useState({});
+    // eslint-disable-next-line
     useEffect(a=>{
         msg4apicall({
             ReadUserDashboardRqst: {
@@ -30,7 +33,7 @@ function Dashboard() {
             <PageHeader pageName="Dashboard" parentPagesArray={[{ name: "Dashboard", url: "/dashboard" }, { name: "Test", url: "test" }]} />
             <section >
                 <Container>
-                    <DetailBox Name="Login Date &amp; Time" Detail="04-Feb-2024 11:57 AM" ColorClass="bg-warning" IconClass="fas fa-sign-in-alt" />
+                    <DetailBox Name="Login Date &amp; Time" Detail={moment().format('DD-MMM-YYYY hh:mm A')} ColorClass="bg-warning" IconClass="fas fa-sign-in-alt" />
                     <DetailBox Name="IP" Detail="172.24.5.2" ColorClass="bg-success" IconClass="fas fa-laptop" />
                 </Container>
                 <PageHeader pageName="SMS" />

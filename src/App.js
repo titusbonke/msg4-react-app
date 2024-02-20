@@ -7,6 +7,7 @@ import EntryLayout from './Layouts/EntryLayout';
 import ErrorLayout from './Layouts/ErrorLayout';
 import Dashboard from './Pages/Dashboard';
 import AddGroup from './Pages/AddGroup';
+import ManageGroup from './Pages/ManageGroup';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path='/' element={<MainLayout><Dashboard /></MainLayout>} />
       <Route path='/dashboard' element={<MainLayout><Dashboard /></MainLayout>} />
       <Route path='/Master/AddGroup' element={<EntryLayout><AddGroup /></EntryLayout>} />
+      <Route path='/Master/ManageGroup' element={<MainLayout><ManageGroup /></MainLayout>} />
       <Route path='/test' element={<MainLayout><TestPage /></MainLayout>} />
       <Route path='*' element={<MainLayout><ErrorLayout /></MainLayout>} />
     </Routes>

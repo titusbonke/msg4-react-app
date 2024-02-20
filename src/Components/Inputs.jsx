@@ -1,13 +1,13 @@
 import { useContext, useEffect } from "react";
 import { InputContext } from "../Components/InputContextProvider";
 
-export function TextBox({ Id, Label, Value = "", Placeholder, Required, Width = 250 }) {
+export function TextBox({ Id, Label, Value = "", Placeholder, Required, Width = 250, Filter }) {
     const { InputValues, SetInputValueChange } = useContext(InputContext);
     // eslint-disable-next-line
     useEffect(() => SetInputValueChange(Id, Value), []);
-    
+
     return (
-        <div className="form-group">
+        <div className={Filter ? "form-group Rfilter" : "form-group"}>
             <label htmlFor={Id}>
                 {Label}{Required ? <span style={{ color: "red" }}> *</span> : ""}
             </label>
@@ -27,7 +27,7 @@ export function TextBox({ Id, Label, Value = "", Placeholder, Required, Width = 
 export function CheckBox({ Id, Label, Value, Placeholder, Required, Width = 250 }) {
     const { InputValues, SetInputValueChange } = useContext(InputContext);
     // eslint-disable-next-line
-    useEffect(e=>SetInputValueChange(Id, Value),[])
+    useEffect(e => SetInputValueChange(Id, Value), [])
 
     return (
         <div className="form-group">
@@ -37,7 +37,7 @@ export function CheckBox({ Id, Label, Value, Placeholder, Required, Width = 250 
                     id={Id}
                     defaultValue={InputValues[Id] !== undefined ? InputValues[Id] : Value}
                     name={Id}
-                    onChange={e=>SetInputValueChange(Id, e.target.checked)}
+                    onChange={e => SetInputValueChange(Id, e.target.checked)}
                     checked={InputValues[Id] !== undefined ? InputValues[Id] : Value}
                 />
                 <input
@@ -64,5 +64,22 @@ export function Button({ Id, Label, Value, ClassName = "btn-primary", OnClick })
             {Label}
         </button>
 
+    );
+}
+export function FilterButton({ Id="FilterSearchButton", Label="Search", Value="Update", ClassName = "btn-primary", OnClick="" }) {
+    return (
+        <div className="form-group Rfilter">
+            <label>&nbsp;</label>
+            <div className="input-group">
+                <button
+                    type="submit"
+                    id={Id}
+                    className={"btn " + ClassName}
+                    value={Value}
+                    onClick={OnClick}>
+                    {Label}
+                </button>
+            </div>
+        </div>
     );
 }
