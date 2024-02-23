@@ -64,7 +64,7 @@ function MenuBar() {
                             </MenuItem>
                             <MenuItem iconClass="nav-icon fas fa-user-friends" name="Group" >
                                 <MenuItem url="/Master/AddGroup" name="Add Group" isPopUp popUpHeight={window.screen.availHeight}  />
-                                <MenuItem url="/Master/ManageGroup/1" name="Manage Group" />
+                                <MenuItem url="/Master/ManageGroup" name="Manage Group" />
                             </MenuItem>
                             <MenuItem iconClass="nav-icon fas fa-clipboard" name="Template" >
                                 <MenuItem url="/Master/AddTemplate" name="Add Template" />

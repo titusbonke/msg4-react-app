@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export function TableLayout({ children }) {
     return (
         <>
@@ -28,8 +30,9 @@ export function TableLayout({ children }) {
                                                     {children.filter(a => a.type === TableHeader)}
                                                 </tr>
                                             </thead>
-
-                                            {children}{children.filter(a => a.type === TableHeader)}
+                                            <tbody>
+                                                {children.filter(a => a.type !== TableHeader)}
+                                            </tbody>
                                         </table>
                                     </div>
                                     <div>
@@ -55,7 +58,7 @@ export function TableLayout({ children }) {
     );
 }
 
-function TableHeader({ Name,Sortable=true }) {
+export function TableHeader({ Name = "", Sortable = true }) {
     return (
         <th
             style={{
@@ -68,7 +71,7 @@ function TableHeader({ Name,Sortable=true }) {
             {
                 Sortable ? <button
                     name="SortOrder"
-                    value={Name?.replace(/\s/g, '')+";asc"}
+                    value={Name?.replace(/\s/g, '') + ";asc"}
                     style={{
                         color: "inherit",
                         textDecoration: "none",
@@ -82,15 +85,62 @@ function TableHeader({ Name,Sortable=true }) {
                     }}
                 >
                     {Name}
-                </button> 
-                : {Name}
+                </button>
+                    :  Name 
             }
 
         </th>
     );
 }
 
-export default TableHeader;
+
+
+export function TableRow({ children }) {
+    return (
+        <tr>
+            {children}
+        </tr>
+    );
+}
+
+export function TableData({ text, iconClass, url = "#", width = 50, isPopUp, isTab, popUpHeight = 500, popUpWidth = 450,textAlign="left" }) {
+    const OpenPopupOrTab = (e) => {
+        if (isPopUp) {
+            e.preventDefault();
+            window.open(url, '_blank', `height=${popUpHeight},width=${popUpWidth}`);
+            return;
+        }
+        if (isTab) {
+            e.preventDefault();
+            window.open(url);
+            return;
+        }
+    }
+    return (
+        <td
+            style={{
+                textAlign: textAlign,
+                border: "1px solid #d1d4d6",
+                padding: ".50rem .75rem",
+                width: width
+            }}
+        >
+            <Link
+                to={url}
+                onClick={OpenPopupOrTab}
+                style={{ textDecoration: "none", color: "#000000" }}
+            >
+                {iconClass ? <i
+                    style={{ fontSize: 16, color: "#191970" }}
+                    title=""
+                    className={iconClass}
+                /> : ""}
+                {text}
+            </Link>
+        </td>
+    );
+}
+
 
 
 
