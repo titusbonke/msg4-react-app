@@ -71,150 +71,153 @@ function Header() {
         }
 
     }, [])
-    useEffect(a=>{
-        console.log(localStorage.getItem('isMenuOpen'));
-        if(localStorage.getItem('isMenuOpen')){
+    useEffect(a => {
+        if (localStorage.getItem('isMenuOpen') === "true") {
             console.log("hit");
             $("body").removeClass("sidebar-collapse");
         }
-    },[])
+        // console.log(localStorage.getItem('isMenuOpen'));
+    }, [])
 
-    var HandleMenuChange= a=>{ console.log(localStorage.getItem('isMenuOpen'));  localStorage.getItem('isMenuOpen')==true? localStorage.setItem('isMenuOpen', false):localStorage.setItem('isMenuOpen', true);}
-    
-    return ( 
-        
+    var HandleMenuChange = a => {
+        localStorage.getItem('isMenuOpen') == "true" ? localStorage.setItem('isMenuOpen', "false") : localStorage.setItem('isMenuOpen', "true");
+        // console.log(localStorage.getItem('isMenuOpen'));
+    }
+
+    return (
+
         <nav className="main-header navbar navbar-expand navbar-white navbar-light">
-        <ul className="navbar-nav">
-            <li className="nav-item">
-                <a className="nav-link" data-widget="pushmenu" href="/" role="button" onClick={HandleMenuChange} >
-                    <i className="fas fa-bars" />
-                </a>
-            </li>
-            <li className="nav-item">
-                <a
-                    className="nav-link"
-                    href="https://console.cloud.robeeta.com/?Token=@bQfmuUuB_LelTIL4VSIKfILde$Jv1QhuIG8ewXpaANJsbMxXdTuWG1jN6IbERJS7UojmdTpwR12bGew5UDb4CukECVs6gjDHEKXSq_BzWVE=@"
-                    role="button"
-                >
-                    <i className="fas fa-home" />
-                </a>
-            </li>
-        </ul>
-        <div className="searchdropdown">
-            <div className="input-group-append">
-                <input
-                    type="text"
-                    id="myInput"
-                    placeholder="Search here"
-                    name="search"
-                    className="form-control search-control"
-                    onClick={myFunction}
-                    onKeyUp={filterFunction}
-                />
-                <button
-                    type="submit"
-                    className="btn btn-default"
-                    onClick={searchFunction}
-                >
-                    <i className="fa fa-search" />
-                </button>
-            </div>
-            <div id="myDropdown" className="searchdropdown-content">
-                <a href="https://console.cloud.robeeta.com/msg4?Token=@e4yNp50PMJH2BeY7gru0Ca1t4El48pBAa4zbw3$a1UHKcQHuBV1KLF8j5G4Uhsofy_y_AOVFYomPWXYXOHMJdzri2W8z$QO8peK1kZi_ozM=@">
-                    Msg4
-                </a>
-                <a href="https://console.cloud.robeeta.com/vm?Token=@Hkp$Ft9TUkx3i902nw4P7DL54c7FCfl8Qm4BcvvzBuykvlVfNiZ6Uy$10nzkfKSmxgLVKiifIzU$LpsZyuOMo66Bz4LwcmKHr6mapfey9RI=@">
-                    Vm
-                </a>
-                <a href="https://console.cloud.robeeta.com/veri5?Token=@QDxtKqGZFONlWnUUMnobbwydGPnTBIgdzYLXtUD9F1ev18GVhfi9XhNjZ8IMWZqD96I3QOEGFMMhOrn7J0wfC9zr6SGzV9RLeeE0uZo$Fck=@">
-                    Veri5
-                </a>
-            </div>
-            <div id="myDropdown2" className="searchdropdown-content2">
-                <a href="/"> No Results Found </a>
-            </div>
-        </div>
-        <ul className="navbar-nav ml-auto">
-            <li
-                className="nav-item dropdown user user-menu"
-                style={{ paddingTop: 6 }}
-            >
-                <a
-                    href="/"
-                    className="text-gray-dark"
-                    data-toggle="dropdown"
-                    aria-expanded="true"
-                >
-                    <img
-                        src="https://drive.sathyainfo.com/webtheme20/v1/img/user.png"
-                        className="user-image"
-                        alt="User "
+            <ul className="navbar-nav">
+                <li className="nav-item">
+                    <a className="nav-link" data-widget="pushmenu" href="/" role="button" onClick={HandleMenuChange} >
+                        <i className="fas fa-bars" />
+                    </a>
+                </li>
+                <li className="nav-item">
+                    <a
+                        className="nav-link"
+                        href="https://console.cloud.robeeta.com/?Token=@bQfmuUuB_LelTIL4VSIKfILde$Jv1QhuIG8ewXpaANJsbMxXdTuWG1jN6IbERJS7UojmdTpwR12bGew5UDb4CukECVs6gjDHEKXSq_BzWVE=@"
+                        role="button"
+                    >
+                        <i className="fas fa-home" />
+                    </a>
+                </li>
+            </ul>
+            <div className="searchdropdown">
+                <div className="input-group-append">
+                    <input
+                        type="text"
+                        id="myInput"
+                        placeholder="Search here"
+                        name="search"
+                        className="form-control search-control"
+                        onClick={myFunction}
+                        onKeyUp={filterFunction}
                     />
-                    &nbsp;&nbsp;
-                    <span style={{ color: "black" }}>Titus</span>&nbsp;&nbsp;
-                </a>
-                <ul className="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                    <li className="user-header">
+                    <button
+                        type="submit"
+                        className="btn btn-default"
+                        onClick={searchFunction}
+                    >
+                        <i className="fa fa-search" />
+                    </button>
+                </div>
+                <div id="myDropdown" className="searchdropdown-content">
+                    <a href="https://console.cloud.robeeta.com/msg4?Token=@e4yNp50PMJH2BeY7gru0Ca1t4El48pBAa4zbw3$a1UHKcQHuBV1KLF8j5G4Uhsofy_y_AOVFYomPWXYXOHMJdzri2W8z$QO8peK1kZi_ozM=@">
+                        Msg4
+                    </a>
+                    <a href="https://console.cloud.robeeta.com/vm?Token=@Hkp$Ft9TUkx3i902nw4P7DL54c7FCfl8Qm4BcvvzBuykvlVfNiZ6Uy$10nzkfKSmxgLVKiifIzU$LpsZyuOMo66Bz4LwcmKHr6mapfey9RI=@">
+                        Vm
+                    </a>
+                    <a href="https://console.cloud.robeeta.com/veri5?Token=@QDxtKqGZFONlWnUUMnobbwydGPnTBIgdzYLXtUD9F1ev18GVhfi9XhNjZ8IMWZqD96I3QOEGFMMhOrn7J0wfC9zr6SGzV9RLeeE0uZo$Fck=@">
+                        Veri5
+                    </a>
+                </div>
+                <div id="myDropdown2" className="searchdropdown-content2">
+                    <a href="/"> No Results Found </a>
+                </div>
+            </div>
+            <ul className="navbar-nav ml-auto">
+                <li
+                    className="nav-item dropdown user user-menu"
+                    style={{ paddingTop: 6 }}
+                >
+                    <a
+                        href="/"
+                        className="text-gray-dark"
+                        data-toggle="dropdown"
+                        aria-expanded="true"
+                    >
                         <img
                             src="https://drive.sathyainfo.com/webtheme20/v1/img/user.png"
-                            className="img-circle"
+                            className="user-image"
                             alt="User "
                         />
-                        <p>Titus</p>
-                    </li>
-                    <li className="user-footer">
-                        <a
-                            href="/msg4/Master/ManageApi"
-                            className="dropdown-item text-center"
-                        >
-                            Api Keys
-                        </a>
-                    </li>
-                    <li className="user-footer">
-                        <a href="/User/SignOut" className="dropdown-item text-center">
-                            <i className="fas fa-sign-out-alt" /> Sign Out
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li className="nav-item dropdown">
-                <a
-                    href="/"
-                    className="nav-link"
-                    data-toggle="dropdown"
-                    aria-expanded="true"
-                    title="Release Notes"
-                >
-                    <i className="fas fa-question-circle" />
-                </a>
-                <ul className="dropdown-menu dropdown-menu-sm-left dropdown-menu-right menulist">
-                    <li className="user-footer">
-                        <a
-                            href="https://help.cloud.robeeta.com/portal/books/robeetacloud-releasenotes"
-                            className="dropdown-item text-center"
-                            target="_blank" rel="noreferrer"
-                        >
-                            <i className="fas fa-sticky-note" /> &nbsp;&nbsp;Release Notes
-                        </a>
-                        <a
-                            target="_blank"
-                            href="/msg4/Content/Document/Msg4UserManual.pdf"
-                            className="dropdown-item text-center"
-                        >
-                            <i
-                                className="fas fa-file-pdf"
-                                title=""
-                                style={{ fontSize: 16 }}
-                            />{" "}
-                            User Manual
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
+                        &nbsp;&nbsp;
+                        <span style={{ color: "black" }}>Titus</span>&nbsp;&nbsp;
+                    </a>
+                    <ul className="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <li className="user-header">
+                            <img
+                                src="https://drive.sathyainfo.com/webtheme20/v1/img/user.png"
+                                className="img-circle"
+                                alt="User "
+                            />
+                            <p>Titus</p>
+                        </li>
+                        <li className="user-footer">
+                            <a
+                                href="/msg4/Master/ManageApi"
+                                className="dropdown-item text-center"
+                            >
+                                Api Keys
+                            </a>
+                        </li>
+                        <li className="user-footer">
+                            <a href="/User/SignOut" className="dropdown-item text-center">
+                                <i className="fas fa-sign-out-alt" /> Sign Out
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li className="nav-item dropdown">
+                    <a
+                        href="/"
+                        className="nav-link"
+                        data-toggle="dropdown"
+                        aria-expanded="true"
+                        title="Release Notes"
+                    >
+                        <i className="fas fa-question-circle" />
+                    </a>
+                    <ul className="dropdown-menu dropdown-menu-sm-left dropdown-menu-right menulist">
+                        <li className="user-footer">
+                            <a
+                                href="https://help.cloud.robeeta.com/portal/books/robeetacloud-releasenotes"
+                                className="dropdown-item text-center"
+                                target="_blank" rel="noreferrer"
+                            >
+                                <i className="fas fa-sticky-note" /> &nbsp;&nbsp;Release Notes
+                            </a>
+                            <a
+                                target="_blank"
+                                href="/msg4/Content/Document/Msg4UserManual.pdf"
+                                className="dropdown-item text-center"
+                            >
+                                <i
+                                    className="fas fa-file-pdf"
+                                    title=""
+                                    style={{ fontSize: 16 }}
+                                />{" "}
+                                User Manual
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
 
-     );
+    );
 }
 
 export default Header;
