@@ -30,7 +30,7 @@ function ManageGroup() {
             }
         }, setLoadingCount).then(data => {
             if (data.PageReportRspn.Response !== "OK") return ShowAlertBox(data.Response, "danger");
-            setData(data.PageReportRspn.ObjectData);
+            setData(data.PageReportRspn);
         })
     }, [])
 
@@ -40,13 +40,13 @@ function ManageGroup() {
             <TextBox Id="GroupName" Label="Group Name" Placeholder="Group Name" Value="test" Filter Width="200px" />
             <FilterButton />
         </FilterBar>
-        <TableLayout TotalRows={Data.TotalRows}>
+        <TableLayout TotalRows={10}>
             <TableHeader />
             <TableHeader Name="Group Code" />
             <TableHeader Name="Group Name" />
             <TableHeader Name="Edit" Sortable={false} />
             {
-                Data.map((item, index) => 
+               Data && Data.ObjectData.map((item, index) => 
                     <TableRow key={index}>
                         <TableData iconClass={"fas fa-tags"} textAlign="center" width={50} />
                         <TableData text={item.GroupName} width={250} />
