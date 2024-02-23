@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export function TableLayout({ children }) {
+export function TableLayout({ children,TotalRows }) {
     return (
         <>
             <style
@@ -38,7 +38,7 @@ export function TableLayout({ children }) {
                                     <div>
                                         <div className="float-left">
                                             <div className="dataTables_info">
-                                                Showing 1 to 7 of 7 entries
+                                                Showing 1 to {children.filter(a => a.type === TableRow).length} of {TotalRows} entries
                                             </div>
                                         </div>
                                         <div className="float-right">

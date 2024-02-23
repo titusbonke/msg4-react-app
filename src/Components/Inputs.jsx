@@ -24,7 +24,7 @@ export function TextBox({ Id, Label, Value = "", Placeholder, Required, Width = 
         </div>
     );
 }
-export function CheckBox({ Id, Label, Value, Placeholder, Required, Width = 250 }) {
+export function CheckBox({ Id, Label, Value=false, Placeholder, Required, Width = 250 }) {
     const { InputValues, SetInputValueChange } = useContext(InputContext);
     // eslint-disable-next-line
     useEffect(e => SetInputValueChange(Id, Value), [])
@@ -66,7 +66,7 @@ export function Button({ Id, Label, Value, ClassName = "btn-primary", OnClick })
 
     );
 }
-export function FilterButton({ Id="FilterSearchButton", Label="Search", Value="Update", ClassName = "btn-primary", OnClick="" }) {
+export function FilterButton({ Id="FilterSearchButton", Label="Search", Value="Update", ClassName = "btn-primary", OnClick }) {
     return (
         <div className="form-group Rfilter">
             <label>&nbsp;</label>
