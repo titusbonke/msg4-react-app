@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import $ from "jquery";
 
 
 
@@ -70,14 +71,22 @@ function Header() {
         }
 
     }, [])
+    useEffect(a=>{
+        console.log(localStorage.getItem('isMenuOpen'));
+        if(localStorage.getItem('isMenuOpen')){
+            console.log("hit");
+            $("body").removeClass("sidebar-collapse");
+        }
+    },[])
 
+    var HandleMenuChange= a=>{ console.log(localStorage.getItem('isMenuOpen'));  localStorage.getItem('isMenuOpen')==true? localStorage.setItem('isMenuOpen', false):localStorage.setItem('isMenuOpen', true);}
     
     return ( 
         
         <nav className="main-header navbar navbar-expand navbar-white navbar-light">
         <ul className="navbar-nav">
             <li className="nav-item">
-                <a className="nav-link" data-widget="pushmenu" href="/" role="button">
+                <a className="nav-link" data-widget="pushmenu" href="/" role="button" onClick={HandleMenuChange} >
                     <i className="fas fa-bars" />
                 </a>
             </li>
