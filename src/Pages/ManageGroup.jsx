@@ -6,10 +6,11 @@ import { TableData, TableHeader, TableLayout, TableRow } from "../Components/Tab
 import { msg4apicall } from "../CommonFunctions";
 import useLoading from "../Components/useLoading";
 import { ShowAlertBox } from "../Components/AlertBox";
-
+const RowsPerPage=2;
 function ManageGroup() {
     var [setLoadingCount] = useLoading()
     const [Data, setData] = useState();
+    const [CurrentPage, setCurrentPage] = useState(1);
 
     useEffect(a => {
         msg4apicall({
@@ -17,11 +18,11 @@ function ManageGroup() {
                 PageReportRqst: {
                     EndDate: "",
                     QuickSearch: "",
-                    RowsPerPage: 10,
+                    RowsPerPage: RowsPerPage,
                     SortField: "",
                     SortOrder: 0,
                     StartDate: "",
-                    StartPage: 1
+                    StartPage: CurrentPage
                 },
                 LoginToken: "185a1e6516dd4f8a80a4ebcc7748212ba5ded331ed90406c94d520ec51e5ad76",
                 GroupName: "",
@@ -32,7 +33,7 @@ function ManageGroup() {
             if (data.PageReportRspn.Response !== "OK") return ShowAlertBox(data.Response, "danger");
             setData(data.PageReportRspn);
         })
-    }, [])
+    }, [CurrentPage])
 
     return (<>
         <PageHeader pageName="Manage Group" parentPagesArray={[{ name: "Home", url: "/dashboard" }, { name: "Master" }]} />
@@ -40,7 +41,7 @@ function ManageGroup() {
             <TextBox Id="GroupName" Label="Group Name" Placeholder="Group Name" Value="test" Filter Width="200px" />
             <FilterButton />
         </FilterBar>
-        <TableLayout TotalRows={10}>
+        <TableLayout RowsPerPage={RowsPerPage} TotalRows={Data?.TotalRows} CurrentPage={CurrentPage} setCurrentPage={setCurrentPage} >
             <TableHeader />
             <TableHeader Name="Group Code" />
             <TableHeader Name="Group Name" />

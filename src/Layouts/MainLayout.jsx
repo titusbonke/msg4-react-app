@@ -58,7 +58,7 @@ function MainLayout({ children }) {
                 <InputContextProvider>
                 <LoadingProvider>
                 <div className="content-wrapper" >
-                    <div className="container-fluid">
+                    <div className="container-fluid p-0">
                         {children}
                     </div>
                 </div>

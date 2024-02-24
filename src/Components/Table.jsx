@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
-export function TableLayout({ children,TotalRows }) {
+export function TableLayout({ children, TotalRows, RowsPerPage, CurrentPage, setCurrentPage }) {
+    var LastPage = Math.ceil(TotalRows / RowsPerPage);
     return (
         <>
             <style
@@ -38,12 +39,104 @@ export function TableLayout({ children,TotalRows }) {
                                     <div>
                                         <div className="float-left">
                                             <div className="dataTables_info">
-                                                Showing 1 to {children.filter(a => a.type === TableRow).length} of {TotalRows} entries
+                                                Showing {(CurrentPage - 1) * RowsPerPage + 1} to {Math.min(CurrentPage * RowsPerPage, TotalRows)}  of {TotalRows} entries
                                             </div>
                                         </div>
                                         <div className="float-right">
                                             <div className="dataTables_paginate paging_simple_numbers">
-                                                <ul className="pagination" />
+                                                {
+                                                    TotalRows > RowsPerPage ?
+                                                        <ul className="pagination">
+                                                            {CurrentPage > 1 ?
+                                                                <li className={"paginate_button page-item"}><button className="page-link" onClick={prev => setCurrentPage(CurrentPage - 1)} >Previous</button></li>
+                                                                : <li className={"paginate_button page-item disabled"}><button className="page-link" >Previous</button></li>
+                                                            }
+
+                                                            {
+                                                                LastPage < 4 ? Array.from({ length: LastPage }, (_, i) => (
+                                                                    <li className={`paginate_button page-item ${CurrentPage === i + 1 ? "active" : ""}`}><button className="page-link" onClick={prev => setCurrentPage(i + 1)}>{i + 1}</button></li>
+                                                                )
+                                                                ) : (() => {
+                                                                    let Elements = [];
+                                                                    Elements.push(<li className={`paginate_button page-item ${CurrentPage === 1 ? "active" : ""}`}><button className="page-link" onClick={prev => setCurrentPage(1)}>1</button></li>);
+
+                                                                    if (CurrentPage > 3 && (CurrentPage < LastPage - 3)) {
+                                                                        console.log("a")
+                                                                        Elements.push(<li className={"paginate_button page-item disabled"}><button className="page-link" >...</button></li>)
+
+                                                                        Elements.push(<li className={`paginate_button page-item `}><button className="page-link" onClick={prev => setCurrentPage(CurrentPage - 1)}>{CurrentPage - 1}</button></li>);
+
+                                                                        Elements.push(<li className={`paginate_button page-item active`}><button className="page-link" onClick={prev => setCurrentPage(CurrentPage)}>{CurrentPage}</button></li>);
+
+                                                                        Elements.push(<li className={`paginate_button page-item `}><button className="page-link" onClick={prev => setCurrentPage(CurrentPage + 1)}>{CurrentPage + 1}</button></li>);
+
+                                                                        Elements.push(<li className={"paginate_button page-item disabled"}><button className="page-link" >...</button></li>)
+                                                                    } else if (CurrentPage < 3) {
+                                                                        console.log("b")
+                                                                        Array.from({ length: LastPage }, (_, i) => {
+                                                                            if (i == 0) return;
+                                                                            if (i < 4) {
+                                                                                Elements.push(
+                                                                                    <li className={`paginate_button page-item ${CurrentPage === i + 1 ? "active" : ""}`}><button className="page-link" onClick={prev => setCurrentPage(i + 1)}>{i + 1}</button></li>
+                                                                                )
+                                                                            }
+                                                                        })
+                                                                        Elements.push(<li className={"paginate_button page-item disabled"}><button className="page-link" >...</button></li>)
+                                                                    } else if (CurrentPage > LastPage - 3) {
+                                                                        console.log("c")
+                                                                        Elements.push(<li className={"paginate_button page-item disabled"}><button className="page-link" >...</button></li>)
+                                                                        for (var i = LastPage - 3; i <= LastPage; i++) {
+                                                                                Elements.push(
+                                                                                    <li key={i} className={`paginate_button page-item ${CurrentPage === i  ? "active" : ""}`}>  
+                                                                                        <button className="page-link" onClick={() =>{ alert(i); setCurrentPage(i)}}>
+                                                                                            {i}
+                                                                                        </button>
+                                                                                    </li>
+                                                                                );
+                                                                        }
+                                                                    }
+
+                                                                    Elements.push(<li className={`paginate_button page-item ${CurrentPage === LastPage ? "active" : ""}`}><button className="page-link" onClick={prev => setCurrentPage(LastPage)}>{LastPage}</button></li>);
+                                                                    console.log(Elements);
+                                                                    return Elements;
+                                                                })()
+
+                                                            }
+
+
+
+                                                            {/* {CurrentPage > 3 ?
+                                                                <>
+                                                                    <li className={"paginate_button page-item"}><button className="page-link" onClick={prev => setCurrentPage(1)}>1</button></li>
+                                                                    <li className={"paginate_button page-item disabled"}><button className="page-link" >...</button></li>
+                                                                </>
+                                                                : <>
+                                                                    {
+                                                                        Array.from({ length: LastPage }, (_, i) => {
+                                                                            if (i <= 4) {
+                                                                                return (
+                                                                                    <li className={CurrentPage == (i + 1) ? "paginate_button page-item active" : "paginate_button page-item"}><button className="page-link" onClick={prev => setCurrentPage(i + 1)}>{i + 1}</button></li>
+                                                                                )
+                                                                            }
+                                                                        })
+                                                                    }
+                                                                </>
+                                                            }
+
+                                                            {CurrentPage < LastPage - 3 ?
+                                                                <>
+                                                                    <li className={"paginate_button page-item disabled"}><button className="page-link" >...</button></li>
+                                                                    <li className={"paginate_button page-item"}><button className="page-link" onClick={prev => setCurrentPage(LastPage)}>{LastPage}</button></li>
+                                                                </>
+                                                                : ""
+                                                            } */}
+                                                            {CurrentPage == LastPage ?
+                                                                <li className={"paginate_button page-item disabled"}><button className="page-link" >Next</button></li>
+                                                                : <li className={"paginate_button page-item"}><button className="page-link" onClick={prev => setCurrentPage(CurrentPage + 1)} >Next</button></li>
+                                                            }
+                                                        </ul>
+                                                        : <ul className="pagination" />
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -86,7 +179,7 @@ export function TableHeader({ Name = "", Sortable = true }) {
                 >
                     {Name}
                 </button>
-                    :  Name 
+                    : Name
             }
 
         </th>
@@ -103,7 +196,7 @@ export function TableRow({ children }) {
     );
 }
 
-export function TableData({ text, iconClass, url = "#", width = 50, isPopUp, isTab, popUpHeight = 500, popUpWidth = 450,textAlign="left" }) {
+export function TableData({ text, iconClass, url = "#", width = 50, isPopUp, isTab, popUpHeight = 500, popUpWidth = 450, textAlign = "left" }) {
     const OpenPopupOrTab = (e) => {
         if (isPopUp) {
             e.preventDefault();
