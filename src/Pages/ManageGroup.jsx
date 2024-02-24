@@ -9,7 +9,7 @@ import { ShowAlertBox } from "../Components/AlertBox";
 
 function ManageGroup() {
     var [setLoadingCount] = useLoading()
-    const [Data, setData] = useState([]);
+    const [Data, setData] = useState();
 
     useEffect(a => {
         msg4apicall({
@@ -46,13 +46,15 @@ function ManageGroup() {
             <TableHeader Name="Group Name" />
             <TableHeader Name="Edit" Sortable={false} />
             {
-               Data && Data.ObjectData.map((item, index) => 
+                Data !=null &&
+                  Data.ObjectData.map((item, index) =>( 
                     <TableRow key={index}>
                         <TableData iconClass={"fas fa-tags"} textAlign="center" width={50} />
                         <TableData text={item.GroupName} width={250} />
                         <TableData text={item.GroupCode} width={"auto"} />
                         <TableData iconClass={"fas fa-edit"} textAlign="center" isPopUp url={"/Master/AddGroup/"+item.GroupGuid} popUpHeight={window.screen.availHeight} width={60} />
                     </TableRow>
+                 )
                 )
             }
         </TableLayout>

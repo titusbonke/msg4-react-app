@@ -73,7 +73,7 @@ function Header() {
     }, [])
     useEffect(a => {
         if (localStorage.getItem('isMenuOpen') === "true") {
-            console.log("hit");
+            // console.log("hit");
             $("body").removeClass("sidebar-collapse");
         }
         // console.log(localStorage.getItem('isMenuOpen'));
