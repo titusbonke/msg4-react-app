@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import FilterBar from "../Components/FilterBar";
 import { FilterButton, TextBox } from "../Components/Inputs";
 import PageHeader from "../Components/PageHeader";
@@ -6,13 +6,20 @@ import { TableData, TableHeader, TableLayout, TableRow } from "../Components/Tab
 import { msg4apicall } from "../CommonFunctions";
 import useLoading from "../Components/useLoading";
 import { ShowAlertBox } from "../Components/AlertBox";
-const RowsPerPage=2;
+import { InputContext } from "../Components/InputContextProvider";
+const RowsPerPage = 10;
 function ManageGroup() {
     var [setLoadingCount] = useLoading()
     const [Data, setData] = useState();
     const [CurrentPage, setCurrentPage] = useState(1);
+    const { InputValues } = useContext(InputContext);
 
-    useEffect(a => {
+    // eslint-disable-next-line
+    useEffect(() => {
+        RenderReport();
+    }, [CurrentPage]);
+
+    function RenderReport() {
         msg4apicall({
             ReadGroupInfoListRqst: {
                 PageReportRqst: {
@@ -25,7 +32,7 @@ function ManageGroup() {
                     StartPage: CurrentPage
                 },
                 LoginToken: "185a1e6516dd4f8a80a4ebcc7748212ba5ded331ed90406c94d520ec51e5ad76",
-                GroupName: "",
+                GroupName: InputValues.GroupName,
                 IsActive: 1,
                 GroupCode: ""
             }
@@ -33,13 +40,13 @@ function ManageGroup() {
             if (data.PageReportRspn.Response !== "OK") return ShowAlertBox(data.Response, "danger");
             setData(data.PageReportRspn);
         })
-    }, [CurrentPage])
+    }
 
     return (<>
         <PageHeader pageName="Manage Group" parentPagesArray={[{ name: "Home", url: "/dashboard" }, { name: "Master" }]} />
-        <FilterBar>
-            <TextBox Id="GroupName" Label="Group Name" Placeholder="Group Name" Value="test" Filter Width="200px" />
-            <FilterButton />
+        <FilterBar OnEnterPress={RenderReport}>
+            <TextBox Id="GroupName" Label="Group Name" Placeholder="Group Name" Filter Width="200px" />
+            <FilterButton OnClick={RenderReport} />
         </FilterBar>
         <TableLayout RowsPerPage={RowsPerPage} TotalRows={Data?.TotalRows} CurrentPage={CurrentPage} setCurrentPage={setCurrentPage} >
             <TableHeader />
@@ -47,15 +54,15 @@ function ManageGroup() {
             <TableHeader Name="Group Name" />
             <TableHeader Name="Edit" Sortable={false} />
             {
-                Data !=null &&
-                  Data.ObjectData.map((item, index) =>( 
+                Data != null &&
+                Data.ObjectData.map((item, index) => (
                     <TableRow key={index}>
                         <TableData iconClass={"fas fa-tags"} textAlign="center" width={50} />
                         <TableData text={item.GroupName} width={250} />
                         <TableData text={item.GroupCode} width={"auto"} />
-                        <TableData iconClass={"fas fa-edit"} textAlign="center" isPopUp url={"/Master/AddGroup/"+item.GroupGuid} popUpHeight={window.screen.availHeight} width={60} />
+                        <TableData iconClass={"fas fa-edit"} textAlign="center" isPopUp url={"/Master/AddGroup/" + item.GroupGuid} popUpHeight={window.screen.availHeight} width={60} />
                     </TableRow>
-                 )
+                )
                 )
             }
         </TableLayout>

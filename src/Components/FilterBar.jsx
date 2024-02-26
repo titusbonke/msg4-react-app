@@ -1,4 +1,23 @@
-function FilterBar({children}) {
+import { useCallback, useEffect } from "react";
+
+function FilterBar({ children,OnEnterPress }) {
+    const handleKeyDown = useCallback((event) => {
+        if (event.key === 'Enter') {
+          OnEnterPress();
+        }
+      }, [OnEnterPress]); // Make sure to include OnEnterPress in the dependency array
+
+    useEffect(() => {
+        
+        // Add event listener when component mounts
+        document.body.addEventListener('keydown', handleKeyDown);
+
+        // Remove event listener when component unmounts
+        return () => {
+            document.body.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [handleKeyDown]); // Empty dependency array ensures the effect runs only once, when the component mounts
+
     return (<>
         <style
             dangerouslySetInnerHTML={{

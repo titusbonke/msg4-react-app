@@ -8,7 +8,7 @@ import { ShowAlertBox } from "../Components/AlertBox";
 import { useParams } from "react-router-dom";
 
 export function AddGroup() {
-    const { InputValues, emptyInputFields, SetInputValueChange } = useContext(InputContext);
+    const { InputValues, SetInputValueChange } = useContext(InputContext);
     var [setLoadingCount] = useLoading()
     const { id } = useParams();
 
