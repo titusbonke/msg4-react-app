@@ -7,7 +7,7 @@ import { msg4apicall } from "../CommonFunctions";
 import useLoading from "../Components/useLoading";
 import { ShowAlertBox } from "../Components/AlertBox";
 import { InputContext } from "../Components/InputContextProvider";
-const RowsPerPage = 10;
+const RowsPerPage = 3;
 function ManageGroup() {
     var [setLoadingCount] = useLoading()
     const [Data, setData] = useState();

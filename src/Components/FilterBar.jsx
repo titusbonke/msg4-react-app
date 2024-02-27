@@ -10,11 +10,11 @@ function FilterBar({ children,OnEnterPress }) {
     useEffect(() => {
         
         // Add event listener when component mounts
-        document.body.addEventListener('keydown', handleKeyDown);
+        document.getElementById("FilterBox20").addEventListener('keydown', handleKeyDown);
 
         // Remove event listener when component unmounts
         return () => {
-            document.body.removeEventListener('keydown', handleKeyDown);
+            document.getElementById("FilterBox20").removeEventListener('keydown', handleKeyDown);
         };
     }, [handleKeyDown]); // Empty dependency array ensures the effect runs only once, when the component mounts
 
