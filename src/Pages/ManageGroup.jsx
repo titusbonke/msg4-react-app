@@ -11,12 +11,12 @@ const RowsPerPage = 3;
 function ManageGroup() {
     var [setLoadingCount] = useLoading()
     const [Data, setData] = useState();
-    const [CurrentPage, setCurrentPage] = useState(1);
     const { InputValues } = useContext(InputContext);
+    const [CurrentPage, setCurrentPage] = useState(1);
 
-    // eslint-disable-next-line
     useEffect(() => {
         RenderReport();
+        // eslint-disable-next-line
     }, [CurrentPage]);
 
     function RenderReport() {
