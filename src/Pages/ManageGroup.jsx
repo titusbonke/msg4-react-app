@@ -7,7 +7,7 @@ import { msg4apicall } from "../CommonFunctions";
 import useLoading from "../Components/useLoading";
 import { ShowAlertBox } from "../Components/AlertBox";
 import { InputContext } from "../Components/InputContextProvider";
-const RowsPerPage = 3;
+const RowsPerPage = 10;
 function ManageGroup() {
     var [setLoadingCount] = useLoading()
     const [Data, setData] = useState();
@@ -34,7 +34,7 @@ function ManageGroup() {
                 LoginToken: "185a1e6516dd4f8a80a4ebcc7748212ba5ded331ed90406c94d520ec51e5ad76",
                 GroupName: InputValues.GroupName,
                 IsActive: 1,
-                GroupCode: ""
+                GroupCode: InputValues.GroupCode,
             }
         }, setLoadingCount).then(data => {
             if (data.PageReportRspn.Response !== "OK") return ShowAlertBox(data.Response, "danger");
@@ -46,20 +46,21 @@ function ManageGroup() {
         <PageHeader pageName="Manage Group" parentPagesArray={[{ name: "Home", url: "/dashboard" }, { name: "Master" }]} />
         <FilterBar OnEnterPress={RenderReport}>
             <TextBox Id="GroupName" Label="Group Name" Placeholder="Group Name" Filter Width="200px" />
+            <TextBox Id="GroupCode" Label="Group Code" Placeholder="Group Code" Filter Width="200px" />
             <FilterButton OnClick={RenderReport} />
         </FilterBar>
         <TableLayout RowsPerPage={RowsPerPage} TotalRows={Data?.TotalRows} CurrentPage={CurrentPage} setCurrentPage={setCurrentPage} >
             <TableHeader />
-            <TableHeader Name="Group Code" />
             <TableHeader Name="Group Name" />
+            <TableHeader Name="Group Code" />
             <TableHeader Name="Edit" Sortable={false} />
             {
                 Data != null &&
                 Data.ObjectData.map((item, index) => (
                     <TableRow key={index}>
                         <TableData iconClass={"fas fa-tags"} textAlign="center" width={50} />
-                        <TableData text={item.GroupName} width={250} />
-                        <TableData text={item.GroupCode} width={"auto"} />
+                        <TableData text={item.GroupName} width={"auto"} />
+                        <TableData text={item.GroupCode} width={250} />
                         <TableData iconClass={"fas fa-edit"} textAlign="center" isPopUp url={"/Master/AddGroup/" + item.GroupGuid} popUpHeight={window.screen.availHeight} width={60} />
                     </TableRow>
                 )
