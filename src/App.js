@@ -8,6 +8,7 @@ import ErrorLayout from './Layouts/ErrorLayout';
 import Dashboard from './Pages/Dashboard';
 import AddGroup from './Pages/AddGroup';
 import ManageGroup from './Pages/ManageGroup';
+import AddContact from './Pages/AddContact';
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
       <Route path='/dashboard' element={<MainLayout><Dashboard /></MainLayout>} />
       <Route path='/Master/AddGroup/:id?' element={<EntryLayout><AddGroup /></EntryLayout>} />
       <Route path='/Master/ManageGroup' element={<MainLayout><ManageGroup /></MainLayout>} />
+      <Route path='/Master/AddContact/:id?' element={<EntryLayout><AddContact /></EntryLayout>} />
+      {/* <Route path='/Master/ManageContact' element={<MainLayout><ManageContact /></MainLayout>} /> */}
       <Route path='/test' element={<MainLayout><TestPage /></MainLayout>} />
       <Route path='*' element={<MainLayout><ErrorLayout /></MainLayout>} />
     </Routes>

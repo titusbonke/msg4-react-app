@@ -59,7 +59,7 @@ function MenuBar() {
                         </MenuItem>
                         <MenuItem iconClass="nav-icon fa fa-address-book" name="Master" >
                             <MenuItem iconClass="nav-icon far fa-address-book" name="Contact" >
-                                <MenuItem url="/Master/AddContact" name="Add Contact" />
+                                <MenuItem url="/Master/AddContact" name="Add Contact" isPopUp popUpHeight={window.screen.availHeight} />
                                 <MenuItem url="/Master/ManageContact/1" name="Manage Contact" />
                             </MenuItem>
                             <MenuItem iconClass="nav-icon fas fa-user-friends" name="Group" >
@@ -67,7 +67,7 @@ function MenuBar() {
                                 <MenuItem url="/Master/ManageGroup" name="Manage Group" />
                             </MenuItem>
                             <MenuItem iconClass="nav-icon fas fa-clipboard" name="Template" >
-                                <MenuItem url="/Master/AddTemplate" name="Add Template" />
+                                <MenuItem url="/Master/AddTemplate" name="Add Template" isPopUp popUpHeight={window.screen.availHeight} />
                                 <MenuItem url="/Master/ManageTemplate/1" name="Manage Template" />
                             </MenuItem>
                         </MenuItem>
