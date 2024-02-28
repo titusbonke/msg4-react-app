@@ -7,14 +7,13 @@ import { msg4apicall } from "../CommonFunctions";
 import useLoading from "../Components/useLoading";
 import { ShowAlertBox } from "../Components/AlertBox";
 import { InputContext } from "../Components/InputContextProvider";
+import { TableContext } from "../Components/TableContextProvider";
 const RowsPerPage = 10;
 function ManageGroup() {
     var [setLoadingCount] = useLoading()
     const [Data, setData] = useState();
     const { InputValues } = useContext(InputContext);
-    const [CurrentPage, setCurrentPage] = useState(1);
-    const [SortOrder, setSortOrder] = useState(0);
-    const [SortField, setSortField] = useState("");
+    const { SortOrder,SortField,CurrentPage } = useContext(TableContext);
 
     useEffect(() => {
         RenderReport();
@@ -51,7 +50,7 @@ function ManageGroup() {
             <TextBox Id="GroupCode" Label="Group Code" Placeholder="Group Code" Filter Width="200px" />
             <FilterButton OnClick={RenderReport} />
         </FilterBar>
-        <TableLayout RowsPerPage={RowsPerPage} TotalRows={Data?.TotalRows} CurrentPage={CurrentPage} setCurrentPage={setCurrentPage} SortOrder={SortOrder} setSortOrder={setSortOrder} SortField={SortField} setSortField={setSortField} >
+        <TableLayout RowsPerPage={RowsPerPage} TotalRows={Data?.TotalRows} >
             <TableHeader Sortable={false} />
             <TableHeader Name="Group Name" />
             <TableHeader Name="Group Code" />

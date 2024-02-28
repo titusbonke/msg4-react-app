@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { TableContext } from "./TableContextProvider";
 
-export function TableLayout({ children, TotalRows, RowsPerPage, CurrentPage, setCurrentPage ,SortOrder,setSortOrder,SortField,setSortField }) {
+export function TableLayout({ children, TotalRows, RowsPerPage  }) {
+    const { CurrentPage, setCurrentPage } = useContext(TableContext);
+
     var LastPage = Math.ceil(TotalRows / RowsPerPage);
     return (
         <>
@@ -30,8 +33,7 @@ export function TableLayout({ children, TotalRows, RowsPerPage, CurrentPage, set
                                             <thead>
                                                 <tr style={{ color: "white" }}>
                                                     {children.filter(child => child.type === TableHeader).map((child, index) => (
-                                                        <TableHeader {...child.props} SortField={SortField} setSortField={setSortField} key={index} SortOrder={SortOrder}
-                                                        setSortOrder={setSortOrder} />
+                                                        <TableHeader {...child.props} key={index} />
                                                     ))}
                                                 </tr>
                                             </thead>
@@ -137,7 +139,9 @@ export function TableLayout({ children, TotalRows, RowsPerPage, CurrentPage, set
     );
 }
 
-export function TableHeader({ Name = "", Sortable = true, SortField,setSortField ,SortOrder,setSortOrder}) {
+export function TableHeader({ Name = "", Sortable = true}) {
+    const { SortOrder,setSortOrder, SortField,setSortField } = useContext(TableContext);
+
     function CheckSortingArrow(){
         if(SortField===Name?.replace(/\s/g, '') && SortOrder===1) return <i className="fa fa-arrow-up"></i> ;
         if(SortField===Name?.replace(/\s/g, '') && SortOrder===0) return <i className="fa fa-arrow-down"></i> ;

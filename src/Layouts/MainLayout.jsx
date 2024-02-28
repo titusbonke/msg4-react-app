@@ -7,6 +7,7 @@ import Footer from '../Includes/Footer';
 import InputContextProvider from '../Components/InputContextProvider';
 import LoadingProvider from '../Components/LoadingContextProvider';
 import { AlertBoxContainer } from '../Components/AlertBox';
+import TableContextProvider from '../Components/TableContextProvider';
 
 
 
@@ -56,6 +57,7 @@ function MainLayout({ children }) {
                 <Header />
                 <MenuBar />
                 <InputContextProvider>
+                <TableContextProvider>
                 <LoadingProvider>
                 <div className="content-wrapper" >
                     <div className="container-fluid p-0">
@@ -63,6 +65,7 @@ function MainLayout({ children }) {
                     </div>
                 </div>
                 </LoadingProvider>
+                </TableContextProvider>
                 </InputContextProvider>
                 <Footer />
                 <AlertBoxContainer />
