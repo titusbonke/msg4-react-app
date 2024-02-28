@@ -33,9 +33,9 @@ function EntryLayout({ children }) {
                 <script src='https://console.cloud.robeeta.com/msg4/WebTheme20/plugins/daterangepicker/daterangepicker.js'></script>
                 <script src='https://console.cloud.robeeta.com/msg4/WebTheme20/plugins/bootstrap/js/bootstrap.bundle.min.js' defer></script>
                 <script src='https://console.cloud.robeeta.com/msg4/WebTheme20/plugins/select2/js/select2.full.min.js'></script>
-                <script src='https://console.cloud.robeeta.com/msg4/WebTheme20/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js' defer></script>
+                {/* <script src='https://console.cloud.robeeta.com/msg4/WebTheme20/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js' defer></script>
                 <script src='https://console.cloud.robeeta.com/msg4/WebTheme20/plugins/datatables-responsive/js/dataTables.responsive.min.js' defer></script>
-                <script src='https://console.cloud.robeeta.com/msg4/WebTheme20/plugins/datatables-responsive/js/responsive.bootstrap4.min.js' defer></script>
+                <script src='https://console.cloud.robeeta.com/msg4/WebTheme20/plugins/datatables-responsive/js/responsive.bootstrap4.min.js' defer></script> */}
 
                 {/* <script src='https://console.cloud.robeeta.com/msg4/WebTheme20/plugins/pre-loader/preloader-1.js' defer></script> */}
                 <script src='https://console.cloud.robeeta.com/msg4/WebTheme20/chart/chart.js'></script>
