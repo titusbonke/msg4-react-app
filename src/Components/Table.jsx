@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export function TableLayout({ children, TotalRows, RowsPerPage, CurrentPage, setCurrentPage }) {
+export function TableLayout({ children, TotalRows, RowsPerPage, CurrentPage, setCurrentPage ,SortOrder,setSortOrder,SortField,setSortField }) {
     var LastPage = Math.ceil(TotalRows / RowsPerPage);
     return (
         <>
@@ -29,14 +29,17 @@ export function TableLayout({ children, TotalRows, RowsPerPage, CurrentPage, set
                                         <table className="table table-bordered table-hover table-striped">
                                             <thead>
                                                 <tr style={{ color: "white" }}>
-                                                    {children.filter(a => a.type === TableHeader)}
+                                                    {children.filter(child => child.type === TableHeader).map((child, index) => (
+                                                        <TableHeader {...child.props} SortField={SortField} setSortField={setSortField} key={index} SortOrder={SortOrder}
+                                                        setSortOrder={setSortOrder} />
+                                                    ))}
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 {children.filter(a => a.type !== TableHeader)}
-                                                {children.filter(a => a.type !== TableHeader)[0].length == 0 ?
+                                                {children.filter(a => a.type !== TableHeader)[0].length === 0 ?
                                                     <tr>
-                                                        <td colSpan={children.filter(a => a.type === TableHeader).length} style={{textAlign:"center"}}>- No data to display -</td>
+                                                        <td colSpan={children.filter(a => a.type === TableHeader).length} style={{ textAlign: "center" }}>- No data to display -</td>
                                                     </tr>
                                                     : ""}
                                             </tbody>
@@ -134,7 +137,19 @@ export function TableLayout({ children, TotalRows, RowsPerPage, CurrentPage, set
     );
 }
 
-export function TableHeader({ Name = "", Sortable = true }) {
+export function TableHeader({ Name = "", Sortable = true, SortField,setSortField ,SortOrder,setSortOrder}) {
+    function CheckSortingArrow(){
+        if(SortField===Name?.replace(/\s/g, '') && SortOrder===1) return <i className="fa fa-arrow-up"></i> ;
+        if(SortField===Name?.replace(/\s/g, '') && SortOrder===0) return <i className="fa fa-arrow-down"></i> ;
+    }
+
+    function CheckSorting(){
+        console.log(Name +" "+ SortField +" "+ SortOrder )
+        if(Name?.replace(/\s/g, '')===SortField && SortOrder===0)setSortOrder(1)
+        else setSortOrder(0)
+        setSortField(()=>Name?.replace(/\s/g, ''))
+    }
+    
     return (
         <th
             style={{
@@ -146,8 +161,9 @@ export function TableHeader({ Name = "", Sortable = true }) {
         >
             {
                 Sortable ? <button
-                    name="SortOrder"
-                    value={Name?.replace(/\s/g, '') + ";asc"}
+                    // name="SortOrder"
+                    // value={Name?.replace(/\s/g, '') + ";asc"}
+                    onClick={CheckSorting}
                     style={{
                         color: "inherit",
                         textDecoration: "none",
@@ -160,7 +176,8 @@ export function TableHeader({ Name = "", Sortable = true }) {
                         padding: "0px 0px 0px 0px"
                     }}
                 >
-                    {Name}
+                    {Name+" "}
+                    {CheckSortingArrow()}
                 </button>
                     : Name
             }
