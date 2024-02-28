@@ -1,14 +1,18 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useContext, useEffect } from "react";
+import { TableContext } from "./TableContextProvider";
 
-function FilterBar({ children,OnEnterPress }) {
+function FilterBar({ children, OnEnterPress }) {
+    const { setCurrentPage } = useContext(TableContext);
+
     const handleKeyDown = useCallback((event) => {
         if (event.key === 'Enter') {
-          OnEnterPress();
+            setCurrentPage(1)
+            OnEnterPress();
         }
-      }, [OnEnterPress]); // Make sure to include OnEnterPress in the dependency array
+    }, [OnEnterPress]); // Make sure to include OnEnterPress in the dependency array
 
     useEffect(() => {
-        
+
         // Add event listener when component mounts
         document.getElementById("FilterBox20")?.addEventListener('keydown', handleKeyDown);
 

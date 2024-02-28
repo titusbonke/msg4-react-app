@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { TableContext } from "./TableContextProvider";
 
-export function TableLayout({ children, TotalRows, RowsPerPage  }) {
+export function TableLayout({ children, TotalRows, RowsPerPage }) {
     const { CurrentPage, setCurrentPage } = useContext(TableContext);
 
     var LastPage = Math.ceil(TotalRows / RowsPerPage);
@@ -32,9 +32,7 @@ export function TableLayout({ children, TotalRows, RowsPerPage  }) {
                                         <table className="table table-bordered table-hover table-striped">
                                             <thead>
                                                 <tr style={{ color: "white" }}>
-                                                    {children.filter(child => child.type === TableHeader).map((child, index) => (
-                                                        <TableHeader {...child.props} key={index} />
-                                                    ))}
+                                                    {children.filter(child => child.type === TableHeader)}
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -139,21 +137,21 @@ export function TableLayout({ children, TotalRows, RowsPerPage  }) {
     );
 }
 
-export function TableHeader({ Name = "", Sortable = true}) {
-    const { SortOrder,setSortOrder, SortField,setSortField } = useContext(TableContext);
+export function TableHeader({ Name = "", Sortable = true }) {
+    const { SortOrder, setSortOrder, SortField, setSortField } = useContext(TableContext);
 
-    function CheckSortingArrow(){
-        if(SortField===Name?.replace(/\s/g, '') && SortOrder===1) return <i className="fa fa-arrow-up"></i> ;
-        if(SortField===Name?.replace(/\s/g, '') && SortOrder===0) return <i className="fa fa-arrow-down"></i> ;
+    function CheckSortingArrow() {
+        if (SortField === Name?.replace(/\s/g, '') && SortOrder === 1) return <i className="fa fa-arrow-up"></i>;
+        if (SortField === Name?.replace(/\s/g, '') && SortOrder === 0) return <i className="fa fa-arrow-down"></i>;
     }
 
-    function CheckSorting(){
-        console.log(Name +" "+ SortField +" "+ SortOrder )
-        if(Name?.replace(/\s/g, '')===SortField && SortOrder===0)setSortOrder(1)
+    function CheckSorting() {
+        console.log(Name + " " + SortField + " " + SortOrder)
+        if (Name?.replace(/\s/g, '') === SortField && SortOrder === 0) setSortOrder(1)
         else setSortOrder(0)
-        setSortField(()=>Name?.replace(/\s/g, ''))
+        setSortField(() => Name?.replace(/\s/g, ''))
     }
-    
+
     return (
         <th
             style={{
@@ -180,7 +178,7 @@ export function TableHeader({ Name = "", Sortable = true}) {
                         padding: "0px 0px 0px 0px"
                     }}
                 >
-                    {Name+" "}
+                    {Name + " "}
                     {CheckSortingArrow()}
                 </button>
                     : Name
@@ -200,7 +198,7 @@ export function TableRow({ children }) {
     );
 }
 
-export function TableData({ text, iconClass, url = "#", width = 50, isPopUp, isTab, popUpHeight = 500, popUpWidth = 450, textAlign = "left" }) {
+export function TableData({ text, iconClass, url, width = 50, isPopUp, isTab, popUpHeight = 500, popUpWidth = 450, textAlign = "left" }) {
     const OpenPopupOrTab = (e) => {
         if (isPopUp) {
             e.preventDefault();
@@ -222,18 +220,29 @@ export function TableData({ text, iconClass, url = "#", width = 50, isPopUp, isT
                 width: width
             }}
         >
-            <Link
-                to={url}
-                onClick={OpenPopupOrTab}
-                style={{ textDecoration: "none", color: "#000000" }}
-            >
-                {iconClass ? <i
-                    style={{ fontSize: 16, color: "#191970" }}
-                    title=""
-                    className={iconClass}
-                /> : ""}
-                {text}
-            </Link>
+            {url ?
+                <Link
+                    to={url}
+                    onClick={OpenPopupOrTab}
+                    style={{ textDecoration: "none", color: "#000000" }}
+                >
+                    {iconClass ? <i
+                        style={{ fontSize: 16, color: "#191970" }}
+                        title=""
+                        className={iconClass}
+                    /> : ""}
+                    {text}
+                </Link> :
+                <>
+                    {iconClass ? <i
+                        style={{ fontSize: 16, color: "#191970" }}
+                        title=""
+                        className={iconClass}
+                    /> : ""}
+                    {text}
+                </>
+            }
+
         </td>
     );
 }

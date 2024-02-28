@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import { InputContext } from "../Components/InputContextProvider";
+import { TableContext } from "./TableContextProvider";
 
 export function TextBox({ Id, Label, Value = "", Placeholder, Required, Width = 250, Filter }) {
     const { InputValues, SetInputValueChange } = useContext(InputContext);
@@ -67,6 +68,8 @@ export function Button({ Id, Label, Value, ClassName = "btn-primary", OnClick })
     );
 }
 export function FilterButton({ Id="FilterSearchButton", Label="Search", Value="Update", ClassName = "btn-primary", OnClick }) {
+    const { setCurrentPage } = useContext(TableContext);
+
     return (
         <div className="form-group Rfilter">
             <label>&nbsp;</label>
@@ -76,7 +79,7 @@ export function FilterButton({ Id="FilterSearchButton", Label="Search", Value="U
                     id={Id}
                     className={"btn " + ClassName}
                     value={Value}
-                    onClick={OnClick}>
+                    onClick={()=>{setCurrentPage(1); OnClick();}}>
                     {Label}
                 </button>
             </div>
