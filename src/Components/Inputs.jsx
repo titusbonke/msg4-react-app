@@ -1,6 +1,10 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { InputContext } from "../Components/InputContextProvider";
 import { TableContext } from "./TableContextProvider";
+import $ from 'jquery';
+import 'select2/dist/css/select2.min.css';
+import 'select2/dist/js/select2.full.min';
+
 
 export function TextBox({ Id, Label, Value = "", Placeholder, Required, Width = 250, Filter }) {
     const { InputValues, SetInputValueChange } = useContext(InputContext);
@@ -25,7 +29,7 @@ export function TextBox({ Id, Label, Value = "", Placeholder, Required, Width = 
         </div>
     );
 }
-export function CheckBox({ Id, Label, Value=false, Placeholder, Required, Width = 250 }) {
+export function CheckBox({ Id, Label, Value = false, Placeholder, Required, Width = 250 }) {
     const { InputValues, SetInputValueChange } = useContext(InputContext);
     // eslint-disable-next-line
     useEffect(e => SetInputValueChange(Id, Value), [])
@@ -67,7 +71,7 @@ export function Button({ Id, Label, Value, ClassName = "btn-primary", OnClick })
 
     );
 }
-export function FilterButton({ Id="FilterSearchButton", Label="Search", Value="Update", ClassName = "btn-primary", OnClick }) {
+export function FilterButton({ Id = "FilterSearchButton", Label = "Search", Value = "Update", ClassName = "btn-primary", OnClick }) {
     const { setCurrentPage } = useContext(TableContext);
 
     return (
@@ -79,10 +83,69 @@ export function FilterButton({ Id="FilterSearchButton", Label="Search", Value="U
                     id={Id}
                     className={"btn " + ClassName}
                     value={Value}
-                    onClick={()=>{setCurrentPage(1); OnClick();}}>
+                    onClick={() => { setCurrentPage(1); OnClick(); }}>
                     {Label}
                 </button>
             </div>
         </div>
     );
 }
+
+
+// export const Select2Dropdown = ({ Label="Label",Id,Value="", options, onChange }) => {
+//     const { InputValues, SetInputValueChange } = useContext(InputContext);
+//     useEffect(() => {
+//         SetInputValueChange(Id, Value);
+//         $('select').select2({}); // Initialize Select2
+//             // eslint-disable-next-line
+//     }, []);
+
+//     return (
+//         <div className="form-group">
+//             <label htmlFor="ContactType">{Label}</label>
+//             <div className="input-group">
+//                 <select style={{ width: "250px" }}  onChange={e => {console.log("test");SetInputValueChange(Id, e.target.value);}} >
+//                     {options.map((option, index) => (
+//                         <option key={index} value={option.value}>{option.label}</option>
+//                     ))}
+//                 </select>
+//             </div>
+//         </div>
+//     );
+// };
+
+export const Select2Dropdown = ({ label = "Label", Id, value = "", options, onChange }) => {
+    const [selectedValue, setSelectedValue] = useState(value);
+
+    const handleChange = (e) => {
+        const selectedVal = e.target.value;
+        console.log("Selected Value:", selectedVal);
+        setSelectedValue(selectedVal);
+        onChange(Id, selectedVal);
+    };
+    
+    useEffect(() => {
+        console.log("Initializing Select2 for ID:", Id);
+        $('#' + Id).select2(); // Initialize Select2
+    }, [Id]);
+    
+    return (
+        <div className="form-group">
+            <label htmlFor={Id}>{label}</label>
+            <div className="input-group">
+                <select
+                    id={Id}
+                    style={{ width: "250px" }}
+                    value={selectedValue}
+                    update={handleChange}
+                >
+                    {options.map((option, index) => (
+                        <option key={index} value={option.value}>
+                            {option.label}
+                        </option>
+                    ))}
+                </select>
+            </div>
+        </div>
+    );
+};

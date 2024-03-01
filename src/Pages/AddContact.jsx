@@ -1,5 +1,5 @@
-import { useContext, useEffect } from "react";
-import { TextBox, CheckBox, Button } from "../Components/Inputs";
+import { useContext, useEffect, useState } from "react";
+import { TextBox, CheckBox, Button, Select2Dropdown } from "../Components/Inputs";
 import EntryCard, { EntryCardFooter, EntryCardTab, EntryCardWithTabs } from "../Includes/EntryCard";
 import { InputContext } from "../Components/InputContextProvider";
 import { msg4apicall } from "../CommonFunctions";
@@ -11,6 +11,13 @@ export function AddContact() {
     const { InputValues, SetInputValueChange } = useContext(InputContext);
     var [setLoadingCount] = useLoading()
     const { id } = useParams();
+
+    const options = [
+        { value: '1', label: 'Option 1' },
+        { value: '2', label: 'Option 2' },
+        { value: '3', label: 'Option 3' },
+    ];
+
 
     // useEffect(a => {
     //     if (id) {
@@ -62,17 +69,10 @@ export function AddContact() {
     }
 
 
+
     return (
         <EntryCard Name="Add Group" >
-            <div class="form-group">
-                <label for="ContactType">Type</label>
-                <div class="input-group">
-                    <select id="ContactType" style={{width:"250px"}} name="ContactType" class="form-control select2 select2-hidden-accessible" data-placeholder="Select" data-select2-id="ContactType" tabindex="-1" aria-hidden="true">
-                        <option value="Single" selected="selected" data-select2-id="2">Single</option>
-                        <option value="Multiple" data-select2-id="32">Multiple</option>
-                    </select><span class="select2 select2-container select2-container--default select2-container--below select2-container--focus" dir="ltr" data-select2-id="1" style={{width: "250px"}}><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-ContactType-container"><span class="select2-selection__rendered" id="select2-ContactType-container" role="textbox" aria-readonly="true" title="Single">Single</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                </div>
-            </div>
+            <Select2Dropdown options={options} Id="testid" Label="Type" Value="2" onChange={a=>console.log(a)} />
             <TextBox Id="GroupCode" Label="Group Code" Placeholder="Group Code" Required />
             <CheckBox Id="IsActive" Label="Is Active" Placeholder="Is Active" Required />
             <EntryCardFooter>

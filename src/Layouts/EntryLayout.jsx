@@ -13,8 +13,8 @@ function EntryLayout({ children }) {
                 <link rel='stylesheet' href='https://console.cloud.robeeta.com/msg4/WebTheme20/plugins/daterangepicker/daterangepicker.css' />
                 <link rel='stylesheet' href='https://console.cloud.robeeta.com/msg4/WebTheme20/plugins/icheck-bootstrap/icheck-bootstrap.min.css' />
                 <link rel='stylesheet' href='https://console.cloud.robeeta.com/msg4/WebTheme20/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css' />
-                <link rel='stylesheet' href='https://console.cloud.robeeta.com/msg4/WebTheme20/plugins/select2/css/select2.min.css' />
-                <link rel='stylesheet' href='https://console.cloud.robeeta.com/msg4/WebTheme20/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css' />
+                {/* <link rel='stylesheet' href='https://console.cloud.robeeta.com/msg4/WebTheme20/plugins/select2/css/select2.min.css' />
+                <link rel='stylesheet' href='https://console.cloud.robeeta.com/msg4/WebTheme20/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css' /> */}
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
                 <link rel='stylesheet' href='https://console.cloud.robeeta.com/msg4/WebTheme20/plugins/progress-bar/progress-bar.css' />
                 <link rel='stylesheet' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css' />
@@ -32,7 +32,7 @@ function EntryLayout({ children }) {
                 <script src='https://console.cloud.robeeta.com/msg4/WebTheme20/plugins/moment/moment.min.js'></script>
                 <script src='https://console.cloud.robeeta.com/msg4/WebTheme20/plugins/daterangepicker/daterangepicker.js'></script>
                 <script src='https://console.cloud.robeeta.com/msg4/WebTheme20/plugins/bootstrap/js/bootstrap.bundle.min.js' defer></script>
-                <script src='https://console.cloud.robeeta.com/msg4/WebTheme20/plugins/select2/js/select2.full.min.js'></script>
+                {/* <script src='https://console.cloud.robeeta.com/msg4/WebTheme20/plugins/select2/js/select2.full.min.js'></script> */}
                 <script src='https://console.cloud.robeeta.com/msg4/WebTheme20/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js' defer></script>
                 <script src='https://console.cloud.robeeta.com/msg4/WebTheme20/plugins/datatables-responsive/js/dataTables.responsive.min.js' defer></script>
                 <script src='https://console.cloud.robeeta.com/msg4/WebTheme20/plugins/datatables-responsive/js/responsive.bootstrap4.min.js' defer></script>
